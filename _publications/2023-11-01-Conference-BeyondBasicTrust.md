@@ -1,6 +1,6 @@
 ---
 title: "Beyond Basic Trust: Envisioning the Future of NextGen Networked Systems and Digital Signatures"
-Attila A. Yavuz, Kiarash Sedghighadikolaei, Saleh Darzi, Saif E. Nouma
+authors: Attila A. Yavuz, Kiarash Sedghighadikolaei, Saleh Darzi, Saif E. Nouma
 collection: publications
 date: 2023-11-01
 venue: '2023 5th IEEE International Conference on Trust, Privacy and Security in Intelligent Systems and Applications (TPS-ISA)'
