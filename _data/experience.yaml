@@ -1,15 +1,15 @@
 experiences:
 
-- place: "University of Maryland"
+- place: "University of South Florida"
   time: "2023 - Current"
-  title: "Ph.D Student"
+  title: "Ph.D. Student"
   subtitle: "Supervisor: Attila A. Yavuz"
   category: "school"
   direction: "right"
 
 - place: "University of Isfahan"
   time: "2017-2021"
-  title: "Undergraduate"
+  title: "Undergraduate Student"
   subtitle: "B.Sc. Computer Science and Engineering"
   category: "school"
   direction: "left"
