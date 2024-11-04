@@ -7,7 +7,6 @@ papers:
     code: "https://github.com/kiarashsedghigh/mumhors"
     venue: "Elsevier"
     ds: y
-#    mod: y
 
 
   - title: "Fast and Post-Quantum Authentication for Real-time Next Generation Networks with Bloom Filter"
@@ -16,21 +15,18 @@ papers:
     code: "https://github.com/kiarashsedghigh/tvpdhors"
     venue: "6th IEEE International Conference on Trust, Privacy and Security in Intelligent Systems and Applications (TPS-ISA)"
     ds: y
-    mod: y
 
   - title: "A Comprehensive Survey of Threshold Digital Signatures: NIST Standards, Post-Quantum Cryptography, Exotic Techniques, and Real-World Applications"
     authors: "<u> Sedghighadikolaei, K. </u>, and Yavuz, A. "
     paper: "https://arxiv.org/pdf/2311.05514"
     venue: "ACM Computing Surveys"
     ds: y
-    mod: y
 
   - title: "Beyond Basic Trust: Envisioning the Future of NextGen Networked Systems and Digital Signatures"
     authors: "Yavuz, A., <u> Sedghighadikolaei, K. </u>, Darzi, S., and Nouma, S."
     paper: "https://ieeexplore.ieee.org/iel7/10431557/10431558/10431561.pdf"
     venue: "5th IEEE International Conference on Trust, Privacy and Security in Intelligent Systems and Applications (TPS-ISA)"
     ds: y
-    mod: y
 
   
 
@@ -41,7 +37,6 @@ papers:
     paper: "https://arxiv.org/pdf/2407.00538"
     venue: "IEEE Computational Intelligence Magazine (CIM)"
     pet: y
-    equal: y
 
 
 
