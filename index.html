@@ -29,9 +29,12 @@ title: Homepage of Kiarash Sedghi
 <!-- ========== Research ========== -->
 <div class="docs-section" id="bio">
   <h5>Bio</h5>
-  <p>
-    As a Ph.D. student specializing in Applied Cryptography, my research primarily focuses on developing hash-based post-quantum secure digital signatures for next-generation IoT systems, such as Smart Grids. In addition to this work, I eagerly investigate privacy-enhancing technologies, like Multi-party Computation (MPC) and Fully Homomorphic Encryption (FHE), to address challenges related to privacy, decentralization, and transparency in distributed authentication systems and privacy-preserving artificial intelligence systems.
-
+  <p style="text-align: justify;">
+    As a Ph.D. student specializing in Applied Cryptography, my research primarily focuses on developing hash-based post-quantum
+    secure digital signatures for next-generation IoT systems, such as Smart Grids. In addition to this work,
+    I eagerly investigate privacy-enhancing technologies, like Multi-party Computation (MPC) and Fully Homomorphic Encryption
+    (FHE), to address challenges related to privacy, decentralization, and transparency in
+    distributed authentication systems and privacy-preserving artificial intelligence systems.
   </p>
 
 
@@ -171,43 +174,43 @@ title: Homepage of Kiarash Sedghi
       {% endfor %}
     </div>
 
-<!--    &lt;!&ndash; PREPRINTS &ndash;&gt;-->
-<!--    <div class="tab-pane inactive" id="papers-PREPRINTS">-->
-<!--      {% assign preprints = site.data.publications.papers | where: "preprint", "y" %}-->
-<!--      {% for paper in preprints %}-->
-<!--        <div class="paper">-->
-<!--          <p class="title"><b>{{ paper.title }}</b>-->
-<!--            {% if paper.paper %}-->
-<!--              <a class="button" href="{{ paper.paper }}" target="_blank">Paper</a>-->
-<!--            {% endif %}-->
-<!--            {% if paper.webpage %}-->
-<!--              <a class="button" href="{{ paper.webpage }}" target="_blank">Webpage</a>-->
-<!--            {% endif %}-->
-<!--            {% if paper.slides %}-->
-<!--              <a class="button" href="{{ paper.slides }}" target="_blank">Slides</a>-->
-<!--            {% endif %}-->
-<!--            {% if paper.poster %}-->
-<!--              <a class="button" href="{{ paper.poster }}" target="_blank">Poster</a>-->
-<!--            {% endif %}-->
-<!--            {% if paper.video %}-->
-<!--              <a class="button" href="{{ paper.video }}" target="_blank">Video</a>-->
-<!--            {% endif %}-->
-<!--            {% if paper.code %}-->
-<!--              <a class="button" href="{{ paper.code }}" target="_blank">Code</a>-->
-<!--            {% endif %}-->
-<!--          </p>-->
-<!--          <p>{{ paper.authors }}</p>-->
-<!--          <p><i>{{ paper.venue }}</i>-->
-<!--            {% if paper.mod%}-->
-<!--            <span style="color:red;"><b>({{ paper.modifier }})</b></span>-->
-<!--          {% endif %} </p>-->
-<!--          {% if paper.equal%}-->
-<!--            <p><i>*equal contribution</i></p>-->
-<!--          {% endif %}-->
-<!--          <div class="paper-buttons">-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      {% endfor %}-->
+    <!-- PREPRINTS -->
+    <div class="tab-pane inactive" id="papers-PREPRINTS">
+      {% assign preprints = site.data.publications.papers | where: "preprint", "y" %}
+      {% for paper in preprints %}
+        <div class="paper">
+          <p class="title"><b>{{ paper.title }}</b>
+            {% if paper.paper %}
+              <a class="button" href="{{ paper.paper }}" target="_blank">Paper</a>
+            {% endif %}
+            {% if paper.webpage %}
+              <a class="button" href="{{ paper.webpage }}" target="_blank">Webpage</a>
+            {% endif %}
+            {% if paper.slides %}
+              <a class="button" href="{{ paper.slides }}" target="_blank">Slides</a>
+            {% endif %}
+            {% if paper.poster %}
+              <a class="button" href="{{ paper.poster }}" target="_blank">Poster</a>
+            {% endif %}
+            {% if paper.video %}
+              <a class="button" href="{{ paper.video }}" target="_blank">Video</a>
+            {% endif %}
+            {% if paper.code %}
+              <a class="button" href="{{ paper.code }}" target="_blank">Code</a>
+            {% endif %}
+          </p>
+          <p>{{ paper.authors }}</p>
+          <p><i>{{ paper.venue }}</i>
+            {% if paper.mod%}
+            <span style="color:red;"><b>({{ paper.modifier }})</b></span>
+          {% endif %} </p>
+          {% if paper.equal%}
+            <p><i>*equal contribution</i></p>
+          {% endif %}
+          <div class="paper-buttons">
+          </div>
+        </div>
+      {% endfor %}
     </div>
 
   </div>
