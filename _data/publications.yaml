@@ -1,36 +1,54 @@
 papers:
 
   # Digital Signatures
-  - title: "Beyond Basic Trust: Envisioning the Future of NextGen Networked Systems and Digital Signatures."
+  - title: "Fast and Post-Quantum Authentication for Real-time Next Generation Networks with Bloom Filter"
+    authors: "<u> Sedghighadikolaei, K. </u>, and Yavuz, A. "
+    paper: "https://arxiv.org/pdf/2409.10813"
+    code: "asd"
+    venue: "6th IEEE International Conference on Trust, Privacy and Security in Intelligent Systems and Applications (TPS-ISA)"
+    advml: y
+    mod: y
+
+  - title: "A Comprehensive Survey of Threshold Digital Signatures: NIST Standards, Post-Quantum Cryptography, Exotic Techniques, and Real-World Applications"
+    authors: "<u> Sedghighadikolaei, K. </u>, and Yavuz, A. "
+    paper: "https://arxiv.org/pdf/2311.05514"
+    venue: "ACM Computing Surveys"
+    advml: y
+    mod: y
+
+  - title: "Beyond Basic Trust: Envisioning the Future of NextGen Networked Systems and Digital Signatures"
     authors: "Yavuz, A., <u> Sedghighadikolaei, K. </u>, Darzi, S., and Nouma, S."
     paper: "https://ieeexplore.ieee.org/iel7/10431557/10431558/10431561.pdf"
     venue: "5th IEEE International Conference on Trust, Privacy and Security in Intelligent Systems and Applications (TPS-ISA)"
     advml: y
     mod: y
-    modifier: "Oral"
+
   
 
 
-  # LLM
-  - title: "Bring Your Own Data! Self-Supervised Evaluation for Large Language Models"
-    authors: "Neel Jain*, Khalid Saifullah*, Yuxin Wen, John Kirchenbauer, Manli Shu, <u>Aniruddha Saha</u>, Micah Goldblum, Jonas Geiping, Tom Goldstein"
-    paper: "https://arxiv.org/abs/2306.13651"
-    venue: "First Conference on Language Modeling (COLM) 2024"
+  # PETs
+  - title: "Privacy-Preserving and Trustworthy Deep Learning for Medical Imaging"
+    authors: "<u> Sedghighadikolaei, K. </u>, and Yavuz, A. "
+    paper: "https://arxiv.org/pdf/2407.00538"
+    venue: "IEEE Computational Intelligence Magazine (CIM)"
     llm: y
     equal: y
 
 
 
-  # MISCELLANEOUS
-  - title: "An Adaptive Foreground-Background Separation Method for Effective Binarization of Document Images"
-    authors: "Bishwadeep Das, Showmik Bhowmik, <u>Aniruddha Saha</u>, Ram Sarkar"
-    venue: "Proceedings of the Eighth International Conference on Soft Computing and Pattern Recognition (SoCPaR 2016)"
-    paper: "https://ani0075saha.github.io/assets/publications/SoCPaR_2016_paper_100.pdf"
-    misc: y
 
-  # PREPRINTS
-  - title: "Baseline Defenses for Adversarial Attacks Against Aligned Language Models"
-    authors: "Neel Jain, Avi Schwarzschild, Yuxin Wen, Gowthami Somepalli, John Kirchenbauer, Ping-yeh Chiang, Micah Goldblum, <u>Aniruddha Saha</u>, Jonas Geiping, Tom Goldstein"
-    paper: "https://arxiv.org/abs/2309.00614"
-    preprint: y
-    equal: y
+
+
+  # Patents
+  - title: "A Lightweight Multiple-Time Post-quantum Signature for Heterogeneous Internet of Things"
+    authors: "<u> Yavuz, A. </u>, and Sedghighadikolaei, K."
+    venue: "U.S. Patent Office TTO Ref. 25T013PR-CS"
+#    paper: "https://ani0075saha.github.io/assets/publications/SoCPaR_2016_paper_100.pdf"
+#    misc: y
+
+
+  - title: "Efficient, Scalable and Post-Quantum Authentication for Real-time Next Generation Networks with Probabilistic Data Structures"
+    authors: "<u> Yavuz, A. </u>, and Sedghighadikolaei, K."
+    venue: "U.S. Patent Office TTO Ref. 25T013PR-CS"
+#    paper: "https://ani0075saha.github.io/assets/publications/SoCPaR_2016_paper_100.pdf"
+    misc: y
