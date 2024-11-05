@@ -3,7 +3,7 @@ papers:
   # Digital Signatures
   - title: "Signer-Optimal Multiple-Time Post-Quantum Hash-Based Signature for Heterogeneous IoT Systems"
     authors: "<u> Sedghighadikolaei, K. </u>, Yavuz, A., and Nouma, S."
-    paper: "https://arxiv.org/pdf/2409.10813"
+    paper: "https://arxiv.org/pdf/2411.01380"
     code: "https://github.com/kiarashsedghigh/mumhors"
     venue: "Elsevier"
     ds: y
