@@ -1,23 +1,18 @@
-# Demo
+# ✨ Kiarash Sedghi
 
-[![Demo](https://ardacarofficial-links-website.pages.dev/readme.png 'Demo')](https://ardacarofficial-links-website.pages.dev/)
+Welcome to the personal website of **Kiarash Sedghi**, a PhD student at the **University of South Florida**, specializing in **post-quantum cryptography** and **secure multi-party computation**.
 
+---
 
-# Install
+## 🔗 Connect With Me
 
-First, clone the file with the following command. Then apply the [component](https://github.com/ardacarofficial/links-website/wiki/Component-Settings "component") and [design](https://github.com/ardacarofficial/links-website/wiki/Design-Settings "design") settings. You can check the [wiki](https://github.com/ardacarofficial/links-website/wiki "wiki") for help.
+- **🔵 LinkedIn:**  
+  [linkedin.com/in/kiarash-sedghi](https://www.linkedin.com/in/kiarash-sedghi)
 
-```sh
-git clone https://github.com/ardacarofficial/links-website.git
-```
+- **📧 Email:**  
+  [kiarashs@usf.edu](mailto:kiarashs@usf.edu)
 
-You can then upload your files to any hosting.
+- **📚 Google Scholar:**  
+  [Google Scholar Profile](https://scholar.google.com/citations?user=B7wAKkEAAAAJ&hl=en)
 
-# Note
-
-Contributions are what make the open source community a great place to learn, inspire and create. Your contributions are greatly appreciated.
-
-If you have a suggestion to make this better, please fork the repository and create a pull request. You can also open an issue with the "Development" tag. If you want, you can also share it in the [discussions](https://github.com/ardacarofficial/links-website/discussions/ "discussions") section. Don't forget to give stars to the project!
-
-# License
-Distributed under the MIT license. See [LICENSE](https://github.com/ardacarofficial/links-website/blob/main/LICENSE "LICENSE") file for more information.
+---
