@@ -1,201 +1,935 @@
-<!--
------------------
-https://github.com/ardacarofficial/links-website is open source project.
------------------
--->
-
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kiarash Sedghi Personal Website</title>
     <meta name="description" content="Your Description">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
-  </head>
-  <body>
 
-    <header>
-    <!-- Logo, Title and Description Codes Start -->
-      <div class="header_img flex_column_center">
-        <img src="img/profile.jpg" alt="Profile" />
-      </div>
-      <div class="header_text flex_column_center">
+    <!-- ---------------- MODAL + PUBLICATIONS + PROJECTS CSS ---------------- -->
+    <style>
+
+        /* ⭐ News Feed Section ⭐ */
+        .news_section {
+            max-width: 700px;
+            margin: 35px auto;
+            font-family: Inter, sans-serif;
+        }
+
+        .news_header {
+            background: #000;
+            color: #facc15; /* gold-ish text like your header subtitle */
+            padding: 10px 18px;
+            border-radius: 8px 8px 0 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .news_box {
+            background: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 0 0 8px 8px;
+            padding: 18px 22px;
+            line-height: 1.55;
+        }
+
+        .news_item {
+            margin-bottom: 10px;
+            color: #333;
+            font-size: 0.95rem;
+        }
+
+        .news_item:last-child {
+            margin-bottom: 0;
+        }
+
+        body {
+            background: #16163a !important; /* clean light gray */
+            background-image: none !important;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            padding-top: 70px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow-y: auto;
+            backdrop-filter: blur(6px);
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+
+        .modal_content {
+            background-color: #ffffff;
+            margin: auto;
+            padding: 25px;
+            border-radius: 12px;
+            width: 70%;
+            max-width: 700px;
+            font-family: Inter, sans-serif;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal_content_wide {
+            background-color: #fffff0;
+            margin: auto;
+            padding: 30px;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 1200px;
+            font-family: Inter, sans-serif;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal_close {
+            float: right;
+            font-size: 30px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .modal_close:hover {
+            color: #f44336;
+        }
+
+        /* -------- Publications accordion styling -------- */
+        .accordion_item {
+            background: #f2f2f2;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .accordion_header {
+            padding: 1rem;
+            font-size: 1.4rem;
+            font-weight: 600;
+            cursor: pointer;
+            background: #e8e8e8;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .accordion_content {
+            display: none;
+            padding: 1rem;
+            background: #fafafa;
+        }
+
+        .pub_item {
+            padding: 1rem 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .pub_abstract {
+            margin-top: .7rem;
+            font-size: 0.95rem;
+            color: #444;
+            line-height: 1.45;
+            padding-right: 1rem;
+            display: none;
+        }
+
+        .pub_buttons {
+            margin-top: .8rem;
+        }
+
+        .pub_btn, .abs_btn {
+            padding: 7px 12px;
+            border: none;
+            background: #444;
+            color: white;
+            border-radius: 6px;
+            margin-right: 10px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .pub_btn:hover, .abs_btn:hover {
+            background: #000;
+        }
+
+        /* ---------- PROJECTS GRID MODAL ---------- */
+        .modal_content_projects {
+            background-color: #ffffff;
+            margin: auto;
+            padding: 30px;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 1200px;
+            font-family: Inter, sans-serif;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .projects_grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 22px;
+            margin-top: 20px;
+        }
+
+        .project_card {
+            background: #fafafa;
+            border-radius: 12px;
+            padding: 18px;
+            border: 1px solid #ddd;
+            transition: 0.25s ease;
+        }
+
+        .project_card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+        }
+
+        .project_card h3 {
+            margin: 0 0 10px;
+            font-size: 1.3rem;
+        }
+
+        .project_card p {
+            font-size: 0.95rem;
+            color: #444;
+        }
+
+        .project_tags {
+            margin-top: 10px;
+        }
+
+        .project_tag {
+            display: inline-block;
+            padding: 4px 10px;
+            background: #e6e6ff;
+            color: #333;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            margin-right: 6px;
+        }
+
+        .project_buttons {
+            margin-top: 15px;
+        }
+
+        .project_btn {
+            padding: 7px 12px;
+            border: none;
+            background: #444;
+            color: white;
+            border-radius: 6px;
+            margin-right: 10px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .project_btn:hover {
+            background: #000;
+        }
+
+        .project_lang_icons {
+            margin-bottom: 10px;
+        }
+
+        .lang_icon {
+            height: 22px;
+            width: auto;
+            margin-right: 8px;
+            opacity: 0.8;
+        }
+
+        .collab_list {
+            margin-top: 10px;
+        }
+
+        .collab_item {
+            padding: 10px 0;
+        }
+
+        .collab_item h3 {
+            margin: 0;
+            font-size: 1.1rem;
+        }
+
+        .collab_links a {
+            color: #444;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .collab_links a:hover {
+            text-decoration: underline;
+        }
+
+        /* ⭐ Personal Description Box ⭐ */
+        .profile_description_box {
+            max-width: 700px;
+            margin: 25px auto 10px auto;
+            padding: 18px 22px;
+            background: #ffffff;
+            border-radius: 12px;
+            border: 1px solid #e5e5e5;
+            box-shadow: 0px 3px 12px rgba(0, 0, 0, 0.08);
+            font-family: Inter, sans-serif;
+            text-align: center;
+        }
+
+        .profile_description_box p {
+            margin: 0;
+            font-size: 1rem;
+            color: #444;
+            line-height: 1.55;
+        }
+
+        /* ⭐ Project Tile Section (Menu 2) ⭐ */
+
+        .projects_tile_section {
+            width: 100%;
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 20px;
+            color: #fff;
+        }
+
+        .section_title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: #facc15;
+            font-weight: 700;
+        }
+
+        .tile_grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+            padding: 10px;
+        }
+
+        .tile_card {
+            background: #2b2c48;
+            border-radius: 15px;
+            padding: 20px;
+            border: 1px solid rgba(255,255,255,0.12);
+            box-shadow: 0 8px 18px rgba(0,0,0,0.25);
+            transition: 0.25s ease;
+        }
+
+        .tile_card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.35);
+        }
+
+        .tile_card h3 {
+            margin: 0 0 12px;
+            color: #facc15;
+            font-size: 1.25rem;
+        }
+
+        .tile_card p {
+            color: #ececec;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        .tile_tags {
+            margin-top: 10px;
+        }
+
+        .tile_tag {
+            display: inline-block;
+            padding: 4px 10px;
+            background: #3e3f6b;
+            color: #facc15;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            margin-right: 6px;
+        }
+
+        .header_svg_item svg {
+            stroke: #ffffff !important;   /* gold */
+            transition: 0.2s;
+        }
+
+        .header_svg_item:hover svg {
+            stroke: #ffffff !important;   /* white on hover */
+        }
+
+    </style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="header_img flex_column_center">
+        <img src="img/profile.jpg" alt="Profile"/>
+    </div>
+
+    <div class="header_text flex_column_center">
         <h1 class="header_h_item">Kiarash Sedghi</h1>
-        <h2 class="header_h_item">Post-quantum and Threshold Crytography</h2>
-      </div>
-    <!-- Logo, Title and Description Codes End -->  
+        <h2 class="header_h_item">Post-quantum and Threshold Cryptography</h2>
+    </div>
 
-    <!-- Social Media Icons Codes Start -->
-      <div class="header_svg_list flex_row_center">
-        <!-- Icon 1 Codes -->
-        <div class="header_svg_item">
-          <a href="#link" target="_blank" rel="nofollow">
-            <svg enable-background="new 0 0 24 24" viewBox="0 0 24 24" >
-              <path d="M18,10.561a.494.494,0,0,1-.245-.065,15.2,15.2,0,0,0-10.95-1.55.5.5,0,0,1-.232-.973A16.2,16.2,0,0,1,18.25,9.626a.5.5,0,0,1-.247.935Z"></path><path d="M16.646,13.632a.5.5,0,0,1-.249-.066,12.459,12.459,0,0,0-9.121-1.292.5.5,0,1,1-.237-.971A13.458,13.458,0,0,1,16.9,12.7a.5.5,0,0,1-.25.933Z"></path><path d="M15.312,16.583a.5.5,0,0,1-.251-.068,9.777,9.777,0,0,0-7.295-1.033.5.5,0,0,1-.245-.97,10.768,10.768,0,0,1,8.043,1.139.5.5,0,0,1-.252.932Z"></path><path d="M12,23A11,11,0,1,1,23,12,11.013,11.013,0,0,1,12,23ZM12,2A10,10,0,1,0,22,12,10.011,10.011,0,0,0,12,2Z"></path>
-            </svg>
-          </a>
-        </div>
-        <!-- Icon 2 Codes -->
-        <div class="header_svg_item">
-          <a href="#link" target="_blank" rel="nofollow">
-            <svg enable-background="new 0 0 24 24" viewBox="0 0 24 24">
-              <path d="m2.538 3 7.425 9.928L2 21h1.5l7.033-7.067L16 21h5.232l-7.662-9.995 6.955-7.514h-1.5L13 10 7.77 3H2.538Zm1.994 1h2.645l12.087 16h-2.525L4.532 4Z"></path>
-            </svg>
-          </a>
-        </div>
-        <!-- Icon 3 Codes -->
-        <div class="header_svg_item">
-          <a href="#link" target="_blank" rel="nofollow">
-            <svg enable-background="new 0 0 24 24" viewBox="0 0 24 24">
-              <path d="M21.938,7.71a7.329,7.329,0,0,0-.456-2.394,4.615,4.615,0,0,0-1.1-1.694,4.61,4.61,0,0,0-1.7-1.1,7.318,7.318,0,0,0-2.393-.456C15.185,2.012,14.817,2,12,2s-3.185.012-4.29.062a7.329,7.329,0,0,0-2.394.456,4.615,4.615,0,0,0-1.694,1.1,4.61,4.61,0,0,0-1.1,1.7A7.318,7.318,0,0,0,2.062,7.71C2.012,8.814,2,9.182,2,12s.012,3.186.062,4.29a7.329,7.329,0,0,0,.456,2.394,4.615,4.615,0,0,0,1.1,1.694,4.61,4.61,0,0,0,1.7,1.1,7.318,7.318,0,0,0,2.393.456c1.1.05,1.472.062,4.29.062s3.186-.012,4.29-.062a7.329,7.329,0,0,0,2.394-.456,4.9,4.9,0,0,0,2.8-2.8,7.318,7.318,0,0,0,.456-2.393c.05-1.1.062-1.472.062-4.29S21.988,8.814,21.938,7.71Zm-1,8.534a6.351,6.351,0,0,1-.388,2.077,3.9,3.9,0,0,1-2.228,2.229,6.363,6.363,0,0,1-2.078.388C15.159,20.988,14.8,21,12,21s-3.159-.012-4.244-.062a6.351,6.351,0,0,1-2.077-.388,3.627,3.627,0,0,1-1.35-.879,3.631,3.631,0,0,1-.879-1.349,6.363,6.363,0,0,1-.388-2.078C3.012,15.159,3,14.8,3,12s.012-3.159.062-4.244A6.351,6.351,0,0,1,3.45,5.679a3.627,3.627,0,0,1,.879-1.35A3.631,3.631,0,0,1,5.678,3.45a6.363,6.363,0,0,1,2.078-.388C8.842,3.012,9.205,3,12,3s3.158.012,4.244.062a6.351,6.351,0,0,1,2.077.388,3.627,3.627,0,0,1,1.35.879,3.631,3.631,0,0,1,.879,1.349,6.363,6.363,0,0,1,.388,2.078C20.988,8.841,21,9.2,21,12S20.988,15.159,20.938,16.244Z"></path>
-              <path d="M17.581,5.467a.953.953,0,1,0,.952.952A.954.954,0,0,0,17.581,5.467Z"></path>
-              <path d="M12,7.073A4.927,4.927,0,1,0,16.927,12,4.932,4.932,0,0,0,12,7.073Zm0,8.854A3.927,3.927,0,1,1,15.927,12,3.932,3.932,0,0,1,12,15.927Z"></path>
-            </svg>
-          </a>
-        </div>
-        <!-- Icon 4 Codes -->
-        <div class="header_svg_item">
-          <a href="#link" target="_blank" rel="nofollow">
-            <svg enable-background="new 0 0 24 24" viewBox="0 0 24 24">
-              <path d="M7.285,23.5a.493.493,0,0,1-.191-.038A.5.5,0,0,1,6.785,23V19.571H2.572a.5.5,0,0,1-.5-.5V4.929a.5.5,0,0,1,.146-.354L6.147.646A.5.5,0,0,1,6.5.5H21.429a.5.5,0,0,1,.5.5V12a.5.5,0,0,1-.147.354L14.71,19.425a.5.5,0,0,1-.353.146H11.421L7.639,23.354A.5.5,0,0,1,7.285,23.5ZM3.072,18.571H7.285a.5.5,0,0,1,.5.5v2.722l3.076-3.075a.5.5,0,0,1,.353-.147H14.15l6.779-6.778V1.5H6.707L3.072,5.136Z"></path><path d="M10.822,17.607a.494.494,0,0,1-.192-.038.5.5,0,0,1-.308-.462v-2.25H7.285a.5.5,0,0,1-.5-.5V3.571a.5.5,0,0,1,.5-.5H18.857a.5.5,0,0,1,.5.5v7.643a.5.5,0,0,1-.147.354L16.068,14.71a.5.5,0,0,1-.354.147H13.779l-2.6,2.6A.5.5,0,0,1,10.822,17.607Zm-3.037-3.75h3.037a.5.5,0,0,1,.5.5V15.9l1.9-1.9a.5.5,0,0,1,.354-.146h1.935l2.85-2.85V4.071H7.785Z"></path>
-              <path d="M15.857,10.386a.5.5,0,0,1-.5-.5V6.072a.5.5,0,1,1,1,0V9.886A.5.5,0,0,1,15.857,10.386Z"></path>
-              <path d="M12.357,10.386a.5.5,0,0,1-.5-.5V6.072a.5.5,0,1,1,1,0V9.886A.5.5,0,0,1,12.357,10.386Z"></path>
-            </svg>
-          </a>
-        </div>
-      </div>
-    <!-- Social Media Icons Codes End -->
+    <!-- ⭐⭐⭐ SOCIAL MEDIA ICONS ⭐⭐⭐ -->
+    <div class="header_svg_list flex_row_center">
 
-    <!-- Menu Codes Start -->
-      <nav>
+        <!-- ⭐ Google Scholar -->
+        <div class="header_svg_item">
+            <a href="https://scholar.google.com/citations?user=B7wAKkEAAAAJ&hl=en" target="_blank" rel="nofollow">
+                <svg viewBox="0 0 24 24" width="28" height="28" fill="#facc15">
+                    <path d="M12 2L1 9l11 7 9-5.727V17h2V9L12 2zm0 9.04L5.15 9 12 4.96 18.85 9 12 11.04zM4 13v4c0 3.314 3.582 6 8 6s8-2.686 8-6v-4l-8 4.727L4 13z"/>
+                </svg>
+            </a>
+        </div>
+
+        <!-- ⭐ GitHub -->
+        <div class="header_svg_item">
+            <a href="https://github.com/kiarashsedghigh" target="_blank" rel="nofollow">
+                <svg viewBox="0 0 24 24" width="28" height="28" fill="#facc15">
+                    <path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.92.58.11.79-.25.79-.55v-2.1c-3.2.7-3.87-1.55-3.87-1.55-.53-1.34-1.3-1.7-1.3-1.7-1.06-.73.08-.72.08-.72 1.17.08 1.78 1.2 1.78 1.2 1.04 1.78 2.73 1.27 3.4.97.1-.76.41-1.27.74-1.56-2.55-.29-5.23-1.27-5.23-5.65 0-1.25.45-2.27 1.2-3.07-.12-.3-.52-1.52.1-3.17 0 0 .97-.31 3.18 1.17A11.07 11.07 0 0 1 12 6.37c.98.01 1.97.13 2.9.38 2.2-1.48 3.17-1.17 3.17-1.17.63 1.65.23 2.87.11 3.17.75.8 1.19 1.82 1.19 3.07 0 4.4-2.69 5.36-5.25 5.65.42.36.8 1.07.8 2.17v3.22c0 .31.2.67.8.55A10.99 10.99 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5Z"/>
+                </svg>
+            </a>
+        </div>
+
+        <!-- ⭐ LinkedIn -->
+        <div class="header_svg_item">
+            <a href="https://linkedin.com/in/kiarash-sedghi" target="_blank" rel="nofollow">
+                <svg viewBox="0 0 24 24" width="28" height="28" fill="#facc15">
+                    <path d="M4.98 3.5a2.5 2.5 0 11-.01 5.01 2.5 2.5 0 01.01-5.01zM3 9h4v12H3V9zm7 0h3.8v1.71h.05c.53-1 1.82-2.05 3.75-2.05C21.4 8.66 22 11 22 14.27V21h-4v-6.12c0-1.46-.03-3.34-2.03-3.34-2.03 0-2.34 1.58-2.34 3.23V21h-4V9z"/>
+                </svg>
+            </a>
+        </div>
+
+        <div class="header_svg_item">
+            <a href="mailto:kiarashs@usf.edu" target="_blank">
+                <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="5" width="18" height="14" rx="2" ry="2"></rect>
+                    <polyline points="3,7 12,13 21,7"></polyline>
+                </svg>
+            </a>
+        </div>
+    </div>
+
+
+
+    <!-- ⭐ SHORT BIO BOX ⭐ -->
+    <div class="profile_description_box">
+        <p>
+            I am a Ph.D. researcher in cryptography at the University of South Florida,
+            focusing on post-quantum cryptography, threshold signatures, lattice-based
+            constructions, and secure multi-party computation. My work explores
+            designing cryptographic systems that remain secure in the presence of
+            quantum adversaries while being practical and scalable.
+        </p>
+    </div>
+
+
+    <nav>
         <ul class="header_nav_menu_list flex_no_wrap_row_center">
-          <li data-target="#main_section_container_1" id="header_nav_menu_item_1" class="header_nav_menu_item" href="">Menu 1</li>
-          <li data-target="#main_section_container_2" id="header_nav_menu_item_2" class="header_nav_menu_item" href="">Menu 2</li>
-          <li data-target="#main_section_container_3" id="header_nav_menu_item_3" class="header_nav_menu_item" href="">Menu 3</li>
+            <li data-target="#main_section_container_1" id="header_nav_menu_item_1" class="header_nav_menu_item">
+                Education
+            </li>
+            <li data-target="#main_section_container_2" id="header_nav_menu_item_2" class="header_nav_menu_item">Work
+            </li>
+<!--            <li data-target="#main_section_container_3" id="header_nav_menu_item_3" class="header_nav_menu_item">Menu-->
+<!--                3-->
+<!--            </li>-->
         </ul>
-      </nav>
-    <!-- Menu Codes End -->
+    </nav>
 
-    </header>
-    <main>
-      <!-- Menu Container 1 Codes Start -->
-      <section id="main_section_container_1" class="flex_column_center">
-        <!-- Menu Text Item -->
-        <div class="main_text_item">
-          <p>The project, where you can easily change texts, icons, colours, boxes and images, is live! Download and try it on Github now.</p>
-        </div>
-        <!-- Menu Small Item -->
+</header>
+
+<main>
+
+    <section id="main_section_container_1" class="flex_column_center">
+
         <div class="main_small_button_list">
-          <a class="main_small_a_item" href="data/publications.html" target="_blank" rel="nofollow">
-            <button class="main_small_button_item">Publications</button>
-          </a>
+
+            <!-- Background (Education) modal trigger -->
+            <a id="openEducationModal" class="main_small_a_item" href="javascript:void(0);">
+                <button class="main_small_button_item">Background</button>
+            </a>
+
+            <!-- Publications now opens a modal -->
+            <a id="openPublicationsModal" class="main_small_a_item" href="javascript:void(0);">
+                <button class="main_small_button_item">Publications</button>
+            </a>
+
+        </div>
+
+        <div class="main_small_button_list">
+
+            <!-- ⭐ Projects button now opens modal -->
+            <a id="openProjectsModal" class="main_small_a_item" href="javascript:void(0);">
+                <button class="main_small_button_item">Projects</button>
+            </a>
+
+            <a id="openCollaboratorsModal" class="main_small_a_item" href="javascript:void(0);">
+                <button class="main_small_button_item">Collaborations</button>
+            </a>
 
 
-          <a class="main_small_a_item" href="https://github.com/ardacarofficial/links-website/wiki/Design-Settings" target="_blank" rel="nofollow">
-            <button class="main_small_button_item">Design Settings</button>
-          </a>
         </div>
-        <!-- Menu Small Item -->
-        <div class="main_small_button_list">
-          <a class="main_small_a_item" href="https://github.com/ardacarofficial/links-website/discussions" target="_blank" rel="nofollow">
-            <button class="main_small_button_item">Report a Bug or Suggestion</button>
-          </a>
-          <a class="main_small_a_item" href="https://github.com/ardacarofficial/links-website/pulls" target="_blank" rel="nofollow">
-            <button class="main_small_button_item">Support the Project</button>
-          </a>
-        </div>
-        <!-- Menu Item -->
-        <a class="main_a_item" href="https://github.com/ardacarofficial/links-website" target="_blank" rel="nofollow">
-          <button class="main_button_item">Github Open Source Files</button>
-        </a>
-        <!-- Menu Item -->
-        <a class="main_a_item" href="https://github.com/ardacarofficial" target="_blank" rel="nofollow">
-          <button class="main_button_item">Project Creator</button>
-        </a>
-      </section>
-      <!-- Menu Container 1 Codes End -->
 
-      <!-- Menu Container 2 Codes Start -->
-      <section id="main_section_container_2" class="flex_column_center">
-        <!-- Menu Text Item -->
-        <div class="main_text_item">
-          <p>Menu 2 text Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi molestiae nesciunt, exercitationem quaerat maxime non!</p>
-        </div>
-        <!-- Menu Small Item -->
-        <div class="main_small_button_list">
-          <a class="main_small_a_item" href="#link" target="_blank" rel="nofollow">
-            <button class="main_small_button_item">Menu 2 Small Item</button>
-          </a>
-          <a class="main_small_a_item" href="#link" target="_blank" rel="nofollow">
-            <button class="main_small_button_item">Menu 2 Small Item</button>
-          </a>
-        </div>
-        <!-- Menu Small Item -->
-        <div class="main_small_button_list">
-          <a class="main_small_a_item" href="#link" target="_blank" rel="nofollow">
-            <button class="main_small_button_item">Menu 2 Small Item</button>
-          </a>
-          <a class="main_small_a_item" href="#link" target="_blank" rel="nofollow">
-            <button class="main_small_button_item">Menu 2 Small Item</button>
-          </a>
-        </div>
-        <!-- Menu Item -->
-        <a class="main_a_item" href="#link" target="_blank" rel="nofollow">
-          <button class="main_button_item">Menu 2 Item</button>
-        </a>
-        <!-- Menu Item -->
-        <a class="main_a_item" href="#link" target="_blank" rel="nofollow">
-          <button class="main_button_item">Menu 2 Item</button>
-        </a>
-      </section>
-      <!-- Menu Container 2 Codes End -->
+    </section>
 
-      <!-- Menu Container 3 Codes Start -->
-      <section id="main_section_container_3" class="flex_column_center">
-        <!-- Menu Text Item -->
-        <div class="main_text_item">
-          <p>Menu 3 text Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi molestiae nesciunt, exercitationem quaerat maxime non!</p>
+
+
+    <section id="main_section_container_2" class="projects_tile_section">
+
+
+        <div class="tile_grid">
+
+            <!-- Tile 1 -->
+            <div class="tile_card">
+                <h3>Threshold Lattice Signatures</h3>
+                <p>A scalable threshold signature scheme over lattice-based constructions.</p>
+                <div class="tile_tags">
+                    <span class="tile_tag">PQC</span>
+                    <span class="tile_tag">Research</span>
+                </div>
+            </div>
+
+            <!-- Tile 2 -->
+            <div class="tile_card">
+                <h3>MPC Toolkit</h3>
+                <p>Secure Multi-Party Computation protocols optimized for distributed computation.</p>
+                <div class="tile_tags">
+                    <span class="tile_tag">MPC</span>
+                    <span class="tile_tag">Protocols</span>
+                </div>
+            </div>
+
+            <!-- Tile 3 -->
+            <div class="tile_card">
+                <h3>ZK Proof Benchmarks</h3>
+                <p>Benchmarking system for measuring the performance of multiple ZK protocols.</p>
+                <div class="tile_tags">
+                    <span class="tile_tag">ZKP</span>
+                    <span class="tile_tag">Benchmarking</span>
+                </div>
+            </div>
+
+            <!-- Tile 4 -->
+            <div class="tile_card">
+                <h3>Quantum-Resistant Key Exchange</h3>
+                <p>Prototype key-exchange algorithm designed to resist quantum adversaries.</p>
+                <div class="tile_tags">
+                    <span class="tile_tag">Post-Quantum</span>
+                    <span class="tile_tag">Key Exchange</span>
+                </div>
+            </div>
+
         </div>
-        <!-- Menu Small Item -->
-        <div class="main_small_button_list">
-          <a class="main_small_a_item" href="#link" target="_blank" rel="nofollow">
-            <button class="main_small_button_item">Menu 3 Small Item</button>
-          </a>
-          <a class="main_small_a_item" href="#link" target="_blank" rel="nofollow">
-            <button class="main_small_button_item">Menu 3 Small Item</button>
-          </a>
+    </section>
+
+
+<!--    <section id="main_section_container_3" class="flex_column_center">-->
+<!--        <div class="main_text_item">-->
+<!--            <p>Menu 3 text Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>-->
+<!--        </div>-->
+<!--    </section>-->
+
+</main>
+
+<!-- ⭐ NEWS FEED ⭐ -->
+<div class="news_section">
+    <div class="news_header">News & Updates</div>
+    <div class="news_box">
+
+        <div class="news_item">
+            <strong>Jan 2025:</strong> Submitted paper on threshold lattice signatures.
         </div>
-        <!-- Menu Small Item -->
-        <div class="main_small_button_list">
-          <a class="main_small_a_item" href="#link" target="_blank" rel="nofollow">
-            <button class="main_small_button_item">Menu 3 Small Item</button>
-          </a>
-          <a class="main_small_a_item" href="#link" target="_blank" rel="nofollow">
-            <button class="main_small_button_item">Menu 3 Small Item</button>
-          </a>
+
+        <div class="news_item">
+            <strong>Oct 2024:</strong> Presented research on post-quantum threshold systems at XYZ Workshop.
         </div>
-        <!-- Menu Item -->
-        <a class="main_a_item" href="#link" target="_blank" rel="nofollow">
-          <button class="main_button_item">Menu 3 Item</button>
-        </a>
-        <!-- Menu Item -->
-        <a class="main_a_item" href="#link" target="_blank" rel="nofollow">
-          <button class="main_button_item">Menu 3 Item</button>
-        </a>
-      </section>
-      <!-- Menu Container 3 Codes End -->
-    </main>
-    <footer>
-      <!-- Footer Codes Start -->
-      <div class="footer_div_item flex_row_center">
-        <a class="footer_a_item" href="#link">Your Name</a>&nbsp;| Copyright Text
-      </div>
-    </footer>
-      <!-- Footer Codes End -->
-    <script src="js/main.js"></script>
-  </body>
+
+        <div class="news_item">
+            <strong>Jun 2024:</strong> Released a new MPC benchmark dataset for distributed computation.
+        </div>
+
+        <div class="news_item">
+            <strong>May 2024:</strong> Joined USF Cryptography Research Group as a Ph.D. researcher.
+        </div>
+
+    </div>
+</div>
+
+
+
+<footer>
+    <div class="footer_div_item flex_row_center">
+        <a class="footer_a_item" href="#link">Kiarash Sedghi</a> | Copyright Text
+    </div>
+</footer>
+
+<!-- ⭐ EDUCATION MODAL ⭐ -->
+<div id="educationModal" class="modal">
+    <div class="modal_content">
+        <span id="closeEducationModal" class="modal_close">&times;</span>
+
+        <h2 style="margin-bottom:20px;">Education Background</h2>
+
+        <!-- PH.D -->
+        <div style="display:flex;align-items:center;gap:15px;margin-bottom:15px;">
+            <img src="img/usflag.png" style="height:30px;">
+            <img src="img/usf_logo.jpg" style="height:35px;">
+            <div>
+                <h3><strong>Ph.D. in Computer Science</strong></h3>
+                <p>University of South Florida (2021–Present)</p>
+                <p style="font-size:0.9rem;color:#555;">Research: Post-Quantum Cryptography, Threshold Cryptography</p>
+                <p><strong>GPA:</strong> 4.0 / 4.0</p>
+            </div>
+        </div>
+
+        <hr style="margin:20px 0;opacity:0.4;">
+
+        <!-- B.Sc -->
+        <div style="display:flex;align-items:center;gap:15px;margin-bottom:10px;">
+            <img src="img/iranflag.png" style="height:30px;">
+            <img src="img/sbu_logo.png" style="height:35px;">
+            <div>
+                <h3><strong>B.Sc. in Computer Engineering</strong></h3>
+                <p>Shahid Beheshti University (2016–2020)</p>
+                <p style="font-size:0.9rem;color:#555;">Focus: Cryptography, Algorithms, Systems</p>
+                <p><strong>GPA:</strong> 3.7 / 4.0</p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- ⭐ PUBLICATIONS MODAL ⭐ -->
+<div id="publicationsModal" class="modal">
+    <div class="modal_content_wide">
+        <span id="closePublicationsModal" class="modal_close">&times;</span>
+
+        <h1 style="text-align:center; margin-bottom:1.5rem;">Publications</h1>
+
+        <!-- ACCORDION SECTION -->
+
+        <div class="accordion_item">
+            <div class="accordion_header" onclick="toggleAccordion(this)">Conference</div>
+            <div class="accordion_content">
+
+                <div class="pub_item">
+                    <strong>1. Your Conference Paper Title</strong><br>
+                    Authors • Conference • 2025
+
+                    <div class="pub_buttons">
+                        <button class="pub_btn" onclick="window.open('pdfs/conf1.pdf')">PDF</button>
+                        <button class="pub_btn" onclick="window.open('https://github.com/...')">Code</button>
+                        <button class="abs_btn" onclick="toggleAbstract(this)">Show Abstract</button>
+                    </div>
+
+                    <div class="pub_abstract">
+                        This is a placeholder abstract describing the main contributions
+                        of your conference paper...
+                    </div>
+                </div>
+
+                <div class="pub_item">
+                    <strong>2. Another Conference Paper</strong><br>
+                    Authors • Conference • 2024
+
+                    <div class="pub_buttons">
+                        <button class="pub_btn">PDF</button>
+                        <button class="pub_btn">Code</button>
+                        <button class="abs_btn" onclick="toggleAbstract(this)">Show Abstract</button>
+                    </div>
+
+                    <div class="pub_abstract">
+                        Abstract text goes here describing the goals, contributions, and results.
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="accordion_item">
+            <div class="accordion_header" onclick="toggleAccordion(this)">Journal</div>
+            <div class="accordion_content">
+
+                <div class="pub_item">
+                    <strong>1. Journal Paper Title</strong><br>
+                    Authors • Journal • 2024
+
+                    <div class="pub_buttons">
+                        <button class="pub_btn">PDF</button>
+                        <button class="pub_btn">Code</button>
+                        <button class="abs_btn" onclick="toggleAbstract(this)">Show Abstract</button>
+                    </div>
+
+                    <div class="pub_abstract">
+                        Journal abstract text goes here.
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="accordion_item">
+            <div class="accordion_header" onclick="toggleAccordion(this)">Patents</div>
+            <div class="accordion_content">
+
+                <div class="pub_item">
+                    <strong>1. Patent Title</strong><br>
+                    Inventors • Patent Office • Year
+
+                    <div class="pub_buttons">
+                        <button class="pub_btn">PDF</button>
+                        <button class="abs_btn" onclick="toggleAbstract(this)">Show Abstract</button>
+                    </div>
+
+                    <div class="pub_abstract">
+                        Patent description goes here.
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- ⭐ PROJECTS MODAL ⭐ -->
+<div id="projectsModal" class="modal">
+    <div class="modal_content_projects">
+        <span id="closeProjectsModal" class="modal_close">&times;</span>
+
+        <h1 style="text-align:center; margin-bottom:20px;">Projects</h1>
+
+        <div class="projects_grid">
+
+            <!-- Project 1 -->
+            <div class="project_card">
+                <h3>Threshold Lattice Signatures</h3>
+
+                <!-- LANGUAGE ICONS (minimal monochrome) -->
+                <div class="project_lang_icons">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
+                         class="lang_icon">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg"
+                         class="lang_icon">
+                </div>
+
+                <p>
+                    A research project implementing scalable threshold signatures
+                    over lattice-based constructions resistant to quantum attacks.
+                </p>
+
+                <div class="project_tags">
+                    <span class="project_tag">PQC</span>
+                    <span class="project_tag">Threshold Crypto</span>
+                    <span class="project_tag">Lattices</span>
+                </div>
+
+                <div class="project_buttons">
+                    <button class="project_btn">Code</button>
+                    <button class="project_btn">PDF</button>
+                </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="project_card">
+                <h3>Secure Multi-Party Computation Toolkit</h3>
+                <p>
+                    Implementation of MPC protocols optimized for secure distributed systems.
+                </p>
+
+                <div class="project_tags">
+                    <span class="project_tag">MPC</span>
+                    <span class="project_tag">Protocols</span>
+                </div>
+
+                <div class="project_buttons">
+                    <button class="project_btn">Code</button>
+                    <button class="project_btn">Slides</button>
+                </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="project_card">
+                <h3>Zero-Knowledge Proof Benchmarks</h3>
+                <p>
+                    Benchmarking framework comparing the efficiency of ZK protocols
+                    for large-scale cryptographic systems.
+                </p>
+
+                <div class="project_tags">
+                    <span class="project_tag">ZK Proofs</span>
+                    <span class="project_tag">Benchmarking</span>
+                </div>
+
+                <div class="project_buttons">
+                    <button class="project_btn">Code</button>
+                    <button class="project_btn">PDF</button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+<!-- ⭐ COLLABORATORS MODAL ⭐ -->
+<div id="collaboratorsModal" class="modal">
+    <div class="modal_content" style="max-width:650px;">
+        <span id="closeCollaboratorsModal" class="modal_close">&times;</span>
+
+        <h2 style="margin-bottom: 20px; text-align:center;">Collaborators</h2>
+
+        <div class="collab_list">
+
+            <!-- Collaborator 1 -->
+            <div class="collab_item">
+                <h3><strong>Dr. John Smith</strong></h3>
+                <p>University of South Florida — Cryptography</p>
+                <p style="color:#555; font-size:0.9rem;">Research Area: Post-Quantum Cryptography</p>
+
+                <div class="collab_links">
+                    <a href="#" target="_blank">Scholar</a> •
+                    <a href="#" target="_blank">Website</a>
+                </div>
+            </div>
+
+            <hr>
+
+            <!-- Collaborator 2 -->
+            <div class="collab_item">
+                <h3><strong>Dr. Sara Moradi</strong></h3>
+                <p>Sharif University of Technology — Computer Engineering</p>
+                <p style="color:#555; font-size:0.9rem;">Research Area: Multi-Party Computation</p>
+
+                <div class="collab_links">
+                    <a href="#" target="_blank">Website</a>
+                </div>
+            </div>
+
+            <hr>
+
+            <!-- Add more collaborators as needed -->
+
+        </div>
+
+    </div>
+
+    <!-- ⭐ NEWS FEED ⭐ -->
+    <div class="news_section">
+        <div class="news_header">News & Updates</div>
+        <div class="news_box">
+
+            <div class="news_item">
+                <strong>Jan 2025:</strong> Submitted paper on threshold lattice signatures.
+            </div>
+
+            <div class="news_item">
+                <strong>Oct 2024:</strong> Presented research on post-quantum threshold systems at XYZ Workshop.
+            </div>
+
+            <div class="news_item">
+                <strong>Jun 2024:</strong> Released a new MPC benchmark dataset for distributed computation.
+            </div>
+
+            <div class="news_item">
+                <strong>May 2024:</strong> Joined USF Cryptography Research Group as a Ph.D. researcher.
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+<script src="js/main.js"></script>
+
+<!-- --------------- MODAL + ACCORDION + PROJECTS JS ---------------- -->
+<script>
+    // Get modals
+    const eduModal = document.getElementById("educationModal");
+    const pubModal = document.getElementById("publicationsModal");
+    const projectsModal = document.getElementById("projectsModal");
+
+    // Open buttons
+    const openEduBtn = document.getElementById("openEducationModal");
+    const openPubBtn = document.getElementById("openPublicationsModal");
+    const openProjectsBtn = document.getElementById("openProjectsModal");
+
+    // Close buttons
+    const closeEduBtn = document.getElementById("closeEducationModal");
+    const closePubBtn = document.getElementById("closePublicationsModal");
+    const closeProjectsBtn = document.getElementById("closeProjectsModal");
+
+    // Open handlers
+    openEduBtn.onclick = () => eduModal.style.display = "block";
+    openPubBtn.onclick = () => pubModal.style.display = "block";
+    openProjectsBtn.onclick = () => projectsModal.style.display = "block";
+
+    // Close handlers
+    closeEduBtn.onclick = () => eduModal.style.display = "none";
+    closePubBtn.onclick = () => pubModal.style.display = "none";
+    closeProjectsBtn.onclick = () => projectsModal.style.display = "none";
+
+    // Close if clicking outside
+    window.onclick = (e) => {
+        if (e.target === eduModal) eduModal.style.display = "none";
+        if (e.target === pubModal) pubModal.style.display = "none";
+        if (e.target === projectsModal) projectsModal.style.display = "none";
+    };
+
+    // Publications accordion logic
+    function toggleAccordion(header) {
+        const content = header.nextElementSibling;
+        content.style.display = content.style.display === "block" ? "none" : "block";
+    }
+
+    function toggleAbstract(button) {
+        const abstract = button.parentElement.nextElementSibling;
+
+        if (abstract.style.display === "none" || abstract.style.display === "") {
+            abstract.style.display = "block";
+            button.innerText = "Hide Abstract";
+        } else {
+            abstract.style.display = "none";
+            button.innerText = "Show Abstract";
+        }
+    }
+
+    const collabModal = document.getElementById("collaboratorsModal");
+    const openCollabBtn = document.getElementById("openCollaboratorsModal");
+    const closeCollabBtn = document.getElementById("closeCollaboratorsModal");
+
+    openCollabBtn.onclick = () => collabModal.style.display = "block";
+    closeCollabBtn.onclick = () => collabModal.style.display = "none";
+
+    window.onclick = (e) => {
+        if (e.target === collabModal) collabModal.style.display = "none";
+    };
+
+</script>
+
+
+
+
+
+
+</body>
 </html>

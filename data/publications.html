@@ -4,65 +4,411 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Your Site</title>
-
-    <!-- Fonts + CSS -->
+    <title>Kiarash Sedghi Personal Website</title>
+    <meta name="description" content="Your Description">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap">
-    <link rel="stylesheet" href="../css/reset.css">
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- ---------------- MODAL CSS ---------------- -->
+    <style>
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            padding-top: 70px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow-y: auto;
+            backdrop-filter: blur(6px);
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+
+        /* EDUCATION MODAL (default) */
+        .modal_content {
+            background-color: #ffffff;
+            margin: auto;
+            padding: 25px;
+            border-radius: 12px;
+            width: 70%;
+            max-width: 700px;
+            font-family: Inter, sans-serif;
+            animation: fadeIn 0.3s ease;
+        }
+
+        /* PUBLICATIONS MODAL — WIDE VERSION */
+        .modal_content_wide {
+            background-color: #ffffff;
+            margin: auto;
+            padding: 30px;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 1200px;
+            font-family: Inter, sans-serif;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .modal_close {
+            float: right;
+            font-size: 30px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .modal_close:hover {
+            color: #f44336;
+        }
+
+        /* ---------------- PUBLICATIONS ACCORDION CSS ---------------- */
+
+        .accordion_item {
+            background: #f2f2f2;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .accordion_header {
+            padding: 1rem;
+            font-size: 1.3rem;
+            font-weight: 600;
+            cursor: pointer;
+            background: #e8e8e8;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .accordion_content {
+            display: none;
+            padding: 1rem;
+            background: #fafafa;
+        }
+
+        .pub_item {
+            padding: 1rem 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .pub_buttons {
+            margin-top: .8rem;
+        }
+
+        .pub_btn, .abs_btn {
+            padding: 7px 12px;
+            border: none;
+            background: #444;
+            color: white;
+            border-radius: 6px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        .pub_btn:hover, .abs_btn:hover {
+            background: #000;
+        }
+
+        .pub_abstract {
+            margin-top: .7rem;
+            font-size: 0.95rem;
+            color: #444;
+            display: none;
+            line-height: 1.45;
+        }
+    </style>
 </head>
 
 <body>
 
-<!-- HEADER -->
 <header>
 
-
-
-    <!-- Title area (keep empty or fill later) -->
-    <div class="header_text flex_column_center">
-        <h1 class="header_h_item">Your Name</h1>
-        <h2 class="header_h_item">Your Subtitle</h2>
+    <div class="header_img flex_column_center">
+        <img src="img/profile.jpg" alt="Profile" />
     </div>
 
-    <!-- NO social icons -->
+    <div class="header_text flex_column_center">
+        <h1 class="header_h_item">Kiarash Sedghi</h1>
+        <h2 class="header_h_item">Post-quantum and Threshold Cryptography</h2>
+    </div>
 
-    <!-- Menu / Navigation -->
+    <!-- Social Icons -->
+    <div class="header_svg_list flex_row_center">
+
+        <!-- Icon 1 -->
+        <div class="header_svg_item">
+            <a href="#link" target="_blank" rel="nofollow">
+                <svg viewBox="0 0 24 24">
+                    <path d="M18,10.561a.494..."></path>
+                    <path d="M16.646,13.632a..."></path>
+                    <path d="M15.312,16.583a..."></path>
+                    <path d="M12,23A11..."></path>
+                </svg>
+            </a>
+        </div>
+
+        <!-- Icon 2 -->
+        <div class="header_svg_item">
+            <a href="#link" target="_blank" rel="nofollow">
+                <svg viewBox="0 0 24 24">
+                    <path d="m2.538 3..."></path>
+                </svg>
+            </a>
+        </div>
+
+        <!-- Icon 3 -->
+        <div class="header_svg_item">
+            <a href="#link" target="_blank" rel="nofollow">
+                <svg viewBox="0 0 24 24">
+                    <path d="M21.938,7.71a..."></path>
+                    <path d="M17.581,5.467a..."></path>
+                    <path d="M12,7.073A..."></path>
+                </svg>
+            </a>
+        </div>
+
+        <!-- Icon 4 -->
+        <div class="header_svg_item">
+            <a href="#link" target="_blank" rel="nofollow">
+                <svg viewBox="0 0 24 24">
+                    <path d="M7.285,23.5a..."></path>
+                    <path d="M10.822,17.607a..."></path>
+                    <path d="M15.857,10.386a..."></path>
+                    <path d="M12.357,10.386a..."></path>
+                </svg>
+            </a>
+        </div>
+
+    </div>
+
     <nav>
         <ul class="header_nav_menu_list flex_no_wrap_row_center">
-            <li data-target="#main_section_container_1" class="header_nav_menu_item">Publications</li>
-            <li data-target="#main_section_container_2" class="header_nav_menu_item">Projects</li>
-            <li data-target="#main_section_container_3" class="header_nav_menu_item">About</li>
+            <li class="header_nav_menu_item">Education</li>
+            <li class="header_nav_menu_item">Menu 2</li>
+            <li class="header_nav_menu_item">Menu 3</li>
         </ul>
     </nav>
 
 </header>
 
-<!-- MAIN SECTIONS (empty) -->
 <main>
 
     <section id="main_section_container_1" class="flex_column_center">
-        <!-- Empty container for you to add publications later -->
+
+        <div class="main_small_button_list">
+
+            <a id="openEducationModal" class="main_small_a_item" href="javascript:void(0);">
+                <button class="main_small_button_item">Background</button>
+            </a>
+
+            <!-- ⭐ PUBLICATIONS BUTTON NOW OPENS MODAL ⭐ -->
+            <a id="openPublicationsModal" class="main_small_a_item" href="javascript:void(0);">
+                <button class="main_small_button_item">Publications</button>
+            </a>
+
+        </div>
+
+        <div class="main_small_button_list">
+            <a class="main_small_a_item" href="#projects">
+                <button class="main_small_button_item">Projects</button>
+            </a>
+
+            <a class="main_small_a_item" href="#collab">
+                <button class="main_small_button_item">Collaborations</button>
+            </a>
+        </div>
+
     </section>
 
     <section id="main_section_container_2" class="flex_column_center">
-        <!-- Empty -->
+        <div class="main_text_item">
+            <p>Menu 2 text lorem ipsum dolor sit amet…</p>
+        </div>
     </section>
 
     <section id="main_section_container_3" class="flex_column_center">
-        <!-- Empty -->
+        <div class="main_text_item">
+            <p>Menu 3 text lorem ipsum dolor sit amet…</p>
+        </div>
     </section>
 
 </main>
 
-<!-- FOOTER (optional, kept minimal) -->
 <footer>
     <div class="footer_div_item flex_row_center">
-        <a class="footer_a_item" href="#link">Your Name</a> | © 2025
+        <a class="footer_a_item" href="#link">Kiarash Sedghi</a> | Copyright Text
     </div>
 </footer>
 
-<script src="../js/main.js"></script>
+<!-- ⭐ EDUCATION MODAL ⭐ -->
+<div id="educationModal" class="modal">
+    <div class="modal_content">
+        <span class="modal_close">&times;</span>
+
+        <h2>Education Background</h2>
+
+        <div style="display:flex;align-items:center;gap:15px;margin-bottom:15px;">
+            <img src="img/usflag.png" style="height:30px;">
+            <img src="img/usf_logo.jpg" style="height:35px;">
+            <div>
+                <h3><strong>Ph.D. in Computer Science</strong></h3>
+                <p>University of South Florida (2021–Present)</p>
+            </div>
+        </div>
+
+        <hr>
+
+        <div style="display:flex;align-items:center;gap:15px;">
+            <img src="img/iranflag.png" style="height:30px;">
+            <img src="img/sbu_logo.png" style="height:35px;">
+            <div>
+                <h3><strong>B.Sc. in Computer Engineering</strong></h3>
+                <p>Shahid Beheshti University (2016–2020)</p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- ⭐ PUBLICATIONS MODAL (OPTION C: WIDE) ⭐ -->
+<div id="publicationsModal" class="modal">
+    <div class="modal_content_wide">
+        <span class="modal_close">&times;</span>
+
+        <h1 style="text-align:center; margin-bottom:20px;">Publications</h1>
+
+        <!-- ---------------- ACCORDION ---------------- -->
+
+        <div class="accordion_item">
+            <div class="accordion_header" onclick="toggleAccordion(this)">Conference</div>
+            <div class="accordion_content">
+
+                <div class="pub_item">
+                    <strong>1. Your Conference Paper Title</strong><br>
+                    Authors • Conference • 2025
+
+                    <div class="pub_buttons">
+                        <button class="pub_btn">PDF</button>
+                        <button class="pub_btn">Code</button>
+                        <button class="abs_btn" onclick="toggleAbstract(this)">Show Abstract</button>
+                    </div>
+
+                    <div class="pub_abstract">
+                        This is a placeholder abstract describing your work...
+                    </div>
+                </div>
+
+                <div class="pub_item">
+                    <strong>2. Another Conference Paper</strong><br>
+                    Authors • Conference • 2024
+
+                    <div class="pub_buttons">
+                        <button class="pub_btn">PDF</button>
+                        <button class="pub_btn">Code</button>
+                        <button class="abs_btn" onclick="toggleAbstract(this)">Show Abstract</button>
+                    </div>
+
+                    <div class="pub_abstract">
+                        Abstract text goes here...
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="accordion_item">
+            <div class="accordion_header" onclick="toggleAccordion(this)">Journal</div>
+            <div class="accordion_content">
+
+                <div class="pub_item">
+                    <strong>1. Journal Paper Title</strong><br>
+                    Authors • Journal • 2024
+
+                    <div class="pub_buttons">
+                        <button class="pub_btn">PDF</button>
+                        <button class="pub_btn">Code</button>
+                        <button class="abs_btn" onclick="toggleAbstract(this)">Show Abstract</button>
+                    </div>
+
+                    <div class="pub_abstract">
+                        Abstract for the journal article...
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="accordion_item">
+            <div class="accordion_header" onclick="toggleAccordion(this)">Patents</div>
+            <div class="accordion_content">
+
+                <div class="pub_item">
+                    <strong>1. Patent Title</strong><br>
+                    Inventors • Patent Office • Year
+
+                    <div class="pub_buttons">
+                        <button class="pub_btn">PDF</button>
+                        <button class="abs_btn" onclick="toggleAbstract(this)">Show Abstract</button>
+                    </div>
+
+                    <div class="pub_abstract">
+                        Patent description goes here...
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- ---------------- JAVASCRIPT ---------------- -->
+<script>
+    const eduModal = document.getElementById("educationModal");
+    const pubModal = document.getElementById("publicationsModal");
+
+    const openEduBtn = document.getElementById("openEducationModal");
+    const openPubBtn = document.getElementById("openPublicationsModal");
+
+    const closeBtns = document.querySelectorAll(".modal_close");
+
+    openEduBtn.onclick = () => eduModal.style.display = "block";
+    openPubBtn.onclick = () => pubModal.style.display = "block";
+
+    closeBtns.forEach(btn => {
+        btn.onclick = () => {
+            eduModal.style.display = "none";
+            pubModal.style.display = "none";
+        };
+    });
+
+    window.onclick = (e) => {
+        if (e.target === eduModal) eduModal.style.display = "none";
+        if (e.target === pubModal) pubModal.style.display = "none";
+    };
+
+    /* --------- Accordion Logic --------- */
+    function toggleAccordion(header) {
+        const content = header.nextElementSibling;
+        content.style.display = content.style.display === "block" ? "none" : "block";
+    }
+
+    function toggleAbstract(button) {
+        const abstract = button.parentElement.nextElementSibling;
+
+        if (abstract.style.display === "none" || abstract.style.display === "") {
+            abstract.style.display = "block";
+            button.innerText = "Hide Abstract";
+        } else {
+            abstract.style.display = "none";
+            button.innerText = "Show Abstract";
+        }
+    }
+</script>
+
 </body>
 </html>
