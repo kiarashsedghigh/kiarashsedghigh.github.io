@@ -4,97 +4,184 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kiarash Sedghi — Post-Quantum & Threshold Cryptography</title>
-    <meta name="description" content="Ph.D. researcher at the University of South Florida working on post-quantum cryptography, threshold lattice-based digital signatures, and secure multi-party computation.">
+    <title>Kiarash Sedghi — Crytography Researcher </title>
+    <meta name="description" content="Ph.D. researcher at the University of South Florida working.">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
 
     <style>
         /* ========================================================
-           PAGE-LEVEL TOKENS & OVERRIDES
+           TOKENS — Soft White palette
            ======================================================== */
         :root {
-            --bg:            #0f0f23;
-            --surface:       #1a1b3a;
-            --surface-2:     #2b2c48;
-            --surface-hi:    #353769;
-            --border:        rgba(255,255,255,0.08);
-            --border-hi:     rgba(255,255,255,0.18);
-            --text:          #e8e8f0;
-            --text-muted:    #9da0b8;
-            --text-dim:      #6f7393;
-            --gold:          #facc15;
-            --gold-soft:     #fde047;
-            --purple:        #a78bfa;
+            /* surfaces */
+            --bg-base:        #f8f8fa;   /* soft off-white page */
+            --surface:        #ffffff;   /* card surface */
+            --surface-2:      #fbfbfd;   /* alt surface (abstracts, hover) */
+
+            /* text */
+            --text:           #1d1d1f;   /* primary, near-black */
+            --text-body:      #424245;   /* body */
+            --text-muted:     #6e6e73;   /* muted */
+            --text-dim:       #86868b;   /* timestamps, captions */
+
+            /* accents */
+            --accent:         #1d1d1f;   /* near-black: active tab, CV button */
+            --accent-2:       #3b3b6e;   /* dark muted indigo: venues, "Me", interactive */
+            --accent-soft:    rgba(59, 59, 110, 0.08);
+            --accent-border:  rgba(59, 59, 110, 0.22);
+
+            /* borders */
+            --border:         #e5e5e7;
+            --border-hi:      #d2d2d7;
+
+            /* shadows */
+            --shadow-sm:      0 1px 2px rgba(0, 0, 0, 0.04);
+            --shadow-md:      0 4px 12px rgba(0, 0, 0, 0.06);
+            --shadow-lg:      0 8px 24px rgba(0, 0, 0, 0.08);
+
+            /* radii — tighter than dark version */
+            --radius-card:    16px;
+            --radius-chip:    12px;
+            --radius-pill:    999px;
         }
 
-        body {
-            background: var(--bg) !important;
+        html, body {
+            background: var(--bg-base) !important;
             background-image: none !important;
-            color: var(--text);
+            color: var(--text-body);
             font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
-        a { color: var(--purple); text-decoration: none; }
-        a:hover { color: var(--gold); }
+        a { color: var(--accent-2); text-decoration: none; }
+        a:hover { color: var(--text); }
+        ::selection { background: rgba(59, 59, 110, 0.15); color: var(--text); }
 
         /* ========================================================
-           HERO
+           AMBIENT BACKGROUND — faint graph-paper lattice only
+           ======================================================== */
+        .bg-stack {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .lattice {
+            position: absolute;
+            inset: -60px;
+            opacity: 0.6;
+            will-change: transform;
+            animation: latticeDrift 90s linear infinite;
+        }
+        @keyframes latticeDrift {
+            from { transform: translate(0, 0); }
+            to   { transform: translate(-60px, -60px); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .lattice { animation: none; }
+        }
+
+        /* ========================================================
+           HERO — typography-led
            ======================================================== */
         header {
             padding-bottom: 0;
+            position: relative;
+            z-index: 1;
+            padding-top: 40px;
         }
 
         .header_img img {
-            border: 3px solid var(--gold) !important;
-            box-shadow: 0 0 0 6px rgba(250,204,21,0.08);
+            border: 3px solid var(--surface) !important;
+            box-shadow:
+                0 0 0 1px var(--border),
+                0 6px 20px rgba(0, 0, 0, 0.08);
         }
 
+        /* Override style.css hero text colors and sizing */
         .header_text h1 {
             color: var(--text);
-            letter-spacing: -0.01em;
+            font-size: 3em;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            margin-top: 8px;
         }
         .header_text h2 {
-            color: var(--gold);
-            font-weight: 500;
-            font-size: 1.15rem;
-            letter-spacing: 0.02em;
+            color: var(--text-muted);
+            font-weight: 400;
+            font-size: 1.05rem;
+            letter-spacing: 0;
+            margin-top: 6px;
         }
 
-        .header_svg_item svg { fill: var(--gold); transition: 0.2s; }
-        .header_svg_item:hover svg { fill: var(--gold-soft); }
+        .header_svg_item svg { fill: var(--text-muted); transition: 0.2s; }
+        .header_svg_item:hover svg { fill: var(--text); }
 
         .profile_description_box {
-            max-width: 720px;
-            margin: 22px auto 0 auto;
-            padding: 18px 24px;
+            max-width: 680px;
+            margin: 26px auto 0 auto;
+            padding: 22px 28px;
             background: var(--surface);
-            border-radius: 12px;
             border: 1px solid var(--border);
-            box-shadow: 0 3px 20px rgba(0,0,0,0.25);
-            font-family: Inter, sans-serif;
+            border-radius: var(--radius-card);
+            box-shadow: var(--shadow-sm);
             text-align: center;
         }
         .profile_description_box p {
             margin: 0;
             font-size: 0.97rem;
-            color: var(--text);
+            color: var(--text-body);
             line-height: 1.65;
         }
-        .profile_description_box strong { color: var(--gold); font-weight: 600; }
+        .profile_description_box strong { color: var(--text); font-weight: 600; }
+
+        .hero_actions {
+            display: flex;
+            justify-content: center;
+            margin-top: 18px;
+            margin-bottom: 6px;
+        }
+        .cv_btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 22px;
+            border-radius: var(--radius-pill);
+            background: var(--accent);
+            color: #fff;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.25s;
+            box-shadow: var(--shadow-sm);
+            text-decoration: none;
+            border: none;
+        }
+        .cv_btn:hover {
+            background: #000;
+            color: #fff;
+            box-shadow: var(--shadow-md);
+            transform: translateY(-1px);
+        }
+        .cv_btn svg { width: 16px; height: 16px; fill: currentColor; }
 
         /* ========================================================
-           STICKY ANCHOR NAV (scroll-spy)
+           STICKY NAV — frosted on light
            ======================================================== */
         .nav_bar {
             position: sticky;
             top: 0;
             z-index: 50;
-            background: rgba(15,15,35,0.85);
-            backdrop-filter: blur(10px);
+            background: rgba(248, 248, 250, 0.85);
+            -webkit-backdrop-filter: blur(20px) saturate(1.4);
+            backdrop-filter: blur(20px) saturate(1.4);
             border-bottom: 1px solid var(--border);
-            margin-top: 30px;
+            margin-top: 36px;
         }
         .nav_bar_inner {
             max-width: 1100px;
@@ -107,29 +194,35 @@
         }
         .nav_link {
             color: var(--text-muted);
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             font-weight: 500;
             padding: 6px 14px;
-            border-radius: 999px;
+            border-radius: var(--radius-pill);
             cursor: pointer;
             transition: 0.2s;
-            letter-spacing: 0.01em;
+            border: 1px solid transparent;
         }
-        .nav_link:hover { color: var(--text); background: var(--surface); }
-        .nav_link.active {
-            color: var(--gold);
+        .nav_link:hover {
+            color: var(--text);
             background: var(--surface);
+            border-color: var(--border);
+        }
+        .nav_link.active {
+            color: #fff;
+            background: var(--accent);
+            border-color: var(--accent);
         }
 
         /* ========================================================
-           SECTION FRAME
+           SECTION
            ======================================================== */
         .section {
             max-width: 1000px;
             margin: 0 auto;
             padding: 56px 24px 16px 24px;
+            position: relative;
+            z-index: 1;
         }
-
         .section_eyebrow {
             display: flex;
             align-items: center;
@@ -140,14 +233,14 @@
             width: 8px;
             height: 8px;
             border-radius: 50%;
-            background: var(--gold);
-            box-shadow: 0 0 0 4px rgba(250,204,21,0.18);
+            background: var(--accent-2);
+            box-shadow: 0 0 0 3px rgba(59, 59, 110, 0.12);
         }
         .section_eyebrow h2 {
-            font-size: 1.45rem;
+            font-size: 1.5rem;
             font-weight: 700;
             color: var(--text);
-            letter-spacing: -0.01em;
+            letter-spacing: -0.015em;
         }
         .section_eyebrow .count {
             color: var(--text-dim);
@@ -159,76 +252,77 @@
         /* ========================================================
            NEWS
            ======================================================== */
-        .news_grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 10px;
-        }
+        .news_grid { display: grid; grid-template-columns: 1fr; gap: 10px; }
         .news_item {
             background: var(--surface);
             border: 1px solid var(--border);
-            border-left: 3px solid var(--gold);
-            border-radius: 8px;
-            padding: 12px 18px;
+            border-left: 2px solid var(--accent);
+            border-radius: var(--radius-chip);
+            padding: 14px 20px;
             font-size: 0.93rem;
-            color: var(--text);
+            color: var(--text-body);
             line-height: 1.55;
-            transition: 0.2s;
+            box-shadow: var(--shadow-sm);
+            transition: 0.25s;
         }
         .news_item:hover {
-            border-color: var(--border-hi);
-            border-left-color: var(--gold);
-            transform: translateX(2px);
+            box-shadow: var(--shadow-md);
+            transform: translateX(3px);
         }
         .news_item .when {
-            color: var(--gold);
+            color: var(--accent-2);
             font-weight: 600;
-            font-size: 0.82rem;
+            font-size: 0.76rem;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-right: 8px;
+            letter-spacing: 0.08em;
+            margin-right: 10px;
         }
+        .news_item strong { color: var(--text); }
 
         /* ========================================================
-           BACKGROUND (Education) — vertical timeline
+           BACKGROUND timeline
            ======================================================== */
-        .timeline {
-            position: relative;
-            padding-left: 28px;
-        }
+        .timeline { position: relative; padding-left: 28px; }
         .timeline::before {
             content: "";
             position: absolute;
             left: 8px;
             top: 8px;
             bottom: 8px;
-            width: 2px;
-            background: linear-gradient(180deg, var(--gold) 0%, var(--border) 100%);
-            opacity: 0.5;
+            width: 1px;
+            background: linear-gradient(180deg,
+                var(--text) 0%,
+                var(--accent-2) 40%,
+                transparent 100%);
+            opacity: 0.35;
         }
         .edu_item {
             position: relative;
-            margin-bottom: 24px;
+            margin-bottom: 18px;
             background: var(--surface);
             border: 1px solid var(--border);
-            border-radius: 12px;
+            border-radius: var(--radius-card);
             padding: 18px 22px;
-            transition: 0.2s;
+            box-shadow: var(--shadow-sm);
+            transition: 0.25s;
         }
         .edu_item:hover {
-            border-color: var(--border-hi);
+            box-shadow: var(--shadow-md);
             transform: translateX(3px);
+            border-color: var(--border-hi);
         }
         .edu_item::before {
             content: "";
             position: absolute;
-            left: -25px;
-            top: 24px;
-            width: 12px;
-            height: 12px;
+            left: -26px;
+            top: 26px;
+            width: 10px;
+            height: 10px;
             border-radius: 50%;
-            background: var(--gold);
-            box-shadow: 0 0 0 4px var(--bg), 0 0 0 6px rgba(250,204,21,0.3);
+            background: var(--accent);
+            box-shadow:
+                0 0 0 3px var(--bg-base),
+                0 0 0 4px rgba(29, 29, 31, 0.2);
         }
         .edu_top {
             display: flex;
@@ -238,154 +332,158 @@
             gap: 6px;
             margin-bottom: 4px;
         }
-        .edu_degree {
-            color: var(--text);
-            font-weight: 600;
-            font-size: 1.05rem;
-        }
+        .edu_degree { color: var(--text); font-weight: 600; font-size: 1.05rem; }
         .edu_period {
-            color: var(--gold);
-            font-size: 0.82rem;
+            color: var(--accent-2);
+            font-size: 0.8rem;
             font-weight: 500;
             letter-spacing: 0.03em;
         }
-        .edu_school {
-            color: var(--purple);
-            font-size: 0.92rem;
-            margin-bottom: 6px;
-        }
-        .edu_meta {
-            color: var(--text-muted);
-            font-size: 0.88rem;
-            line-height: 1.5;
-            margin-bottom: 6px;
-        }
+        .edu_school { color: var(--text-muted); font-size: 0.92rem; margin-bottom: 6px; }
+        .edu_meta { color: var(--text-muted); font-size: 0.88rem; line-height: 1.55; margin-bottom: 8px; }
         .edu_gpa {
             display: inline-block;
-            background: rgba(250,204,21,0.1);
-            color: var(--gold);
-            border: 1px solid rgba(250,204,21,0.3);
-            padding: 2px 10px;
-            border-radius: 6px;
-            font-size: 0.8rem;
+            background: var(--accent-soft);
+            color: var(--accent-2);
+            border: 1px solid var(--accent-border);
+            padding: 3px 11px;
+            border-radius: var(--radius-pill);
+            font-size: 0.76rem;
             font-weight: 500;
+            margin-right: 6px;
         }
         .edu_gpa.muted {
-            background: rgba(255,255,255,0.05);
+            background: var(--surface-2);
             color: var(--text-muted);
             border-color: var(--border);
         }
 
         /* ========================================================
-           PUBLICATIONS — tabs + list
+           PUBLICATIONS
            ======================================================== */
         .pub_tabs {
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
             margin-bottom: 24px;
-            border-bottom: 1px solid var(--border);
             padding-bottom: 14px;
+            border-bottom: 1px solid var(--border);
         }
         .pub_tab {
             display: inline-flex;
             align-items: center;
             gap: 8px;
             padding: 8px 16px;
-            border-radius: 999px;
-            background: transparent;
-            border: 1px solid var(--border-hi);
+            border-radius: var(--radius-pill);
+            background: var(--surface);
+            border: 1px solid var(--border);
             color: var(--text-muted);
             font-size: 0.88rem;
             font-weight: 500;
             cursor: pointer;
             transition: 0.2s;
             font-family: inherit;
+            box-shadow: var(--shadow-sm);
         }
         .pub_tab:hover {
             color: var(--text);
-            border-color: rgba(250,204,21,0.4);
+            border-color: var(--border-hi);
         }
         .pub_tab.active {
-            background: var(--gold);
-            color: #1a1a2e;
-            border-color: var(--gold);
-            box-shadow: 0 0 24px rgba(250,204,21,0.25);
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #fff;
+            box-shadow: var(--shadow-md);
         }
         .pub_tab .tab_count {
             display: inline-block;
-            background: rgba(0,0,0,0.15);
+            background: var(--accent-soft);
+            color: var(--accent-2);
             padding: 1px 8px;
-            border-radius: 999px;
-            font-size: 0.75rem;
+            border-radius: var(--radius-pill);
+            font-size: 0.74rem;
             font-weight: 600;
         }
         .pub_tab.active .tab_count {
-            background: rgba(0,0,0,0.18);
-            color: #1a1a2e;
+            background: rgba(255, 255, 255, 0.18);
+            color: #fff;
         }
 
         .pub_list { display: none; animation: fadeSlide 0.3s ease; }
         .pub_list.active { display: block; }
-
         @keyframes fadeSlide {
             from { opacity: 0; transform: translateY(6px); }
             to   { opacity: 1; transform: translateY(0); }
         }
 
-        .pub_item {
-            padding: 18px 0;
-            border-bottom: 1px solid var(--border);
-        }
+        .pub_item { padding: 18px 0; border-bottom: 1px solid var(--border); }
         .pub_item:last-child { border-bottom: none; }
-        .pub_title {
+
+        .pub_type {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 5px;
+            font-size: 0.66rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            margin-right: 8px;
+            text-transform: uppercase;
+            vertical-align: 2px;
+        }
+        .pub_type.conf {
+            background: var(--surface-2);
             color: var(--text);
-            font-size: 1rem;
-            font-weight: 600;
-            line-height: 1.4;
-            margin-bottom: 4px;
+            border: 1px solid var(--border-hi);
         }
-        .pub_authors {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            margin-bottom: 4px;
+        .pub_type.jnl {
+            background: var(--accent-soft);
+            color: var(--accent-2);
+            border: 1px solid var(--accent-border);
         }
-        .pub_authors .me { color: var(--gold); font-weight: 600; }
-        .pub_venue {
-            font-size: 0.85rem;
-            color: var(--purple);
-            font-weight: 500;
-        }
+
+        .pub_title { color: var(--text); font-size: 1rem; font-weight: 600; line-height: 1.4; margin-bottom: 4px; }
+        .pub_authors { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 4px; }
+        .pub_authors .me { color: var(--accent-2); font-weight: 600; }
+        .pub_venue { font-size: 0.85rem; color: var(--accent-2); font-weight: 500; }
         .pub_buttons { margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap; }
         .pub_btn {
             padding: 5px 12px;
             border: 1px solid var(--border-hi);
-            background: transparent;
+            background: var(--surface);
             color: var(--text-muted);
-            border-radius: 6px;
+            border-radius: 8px;
             cursor: pointer;
-            font-size: 0.8rem;
+            font-size: 0.78rem;
+            font-weight: 500;
             transition: 0.2s;
             font-family: inherit;
+            box-shadow: var(--shadow-sm);
         }
         .pub_btn:hover {
-            color: var(--gold);
-            border-color: var(--gold);
+            color: var(--text);
+            border-color: var(--text);
+            background: var(--surface-2);
+        }
+        .pub_btn.disabled { opacity: 0.5; cursor: not-allowed; }
+        .pub_btn.disabled:hover {
+            color: var(--text-muted);
+            border-color: var(--border-hi);
+            background: var(--surface);
         }
         .pub_abstract {
             display: none;
-            margin-top: 10px;
+            margin-top: 12px;
             font-size: 0.9rem;
-            color: var(--text-muted);
+            color: var(--text-body);
             line-height: 1.6;
-            padding: 12px 14px;
-            background: rgba(255,255,255,0.03);
-            border-radius: 8px;
-            border-left: 2px solid var(--purple);
+            padding: 14px 16px;
+            background: var(--surface-2);
+            border-radius: var(--radius-chip);
+            border-left: 2px solid var(--accent-2);
         }
 
         /* ========================================================
-           PROJECTS — grid
+           PROJECTS
            ======================================================== */
         .proj_grid {
             display: grid;
@@ -395,29 +493,38 @@
         .proj_card {
             background: var(--surface);
             border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 18px;
+            border-radius: var(--radius-card);
+            padding: 20px;
             transition: 0.25s ease;
             display: flex;
             flex-direction: column;
+            box-shadow: var(--shadow-sm);
         }
         .proj_card:hover {
-            transform: translateY(-4px);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
             border-color: var(--border-hi);
-            box-shadow: 0 10px 28px rgba(0,0,0,0.35);
         }
         .proj_card h3 {
-            color: var(--gold);
+            color: var(--text);
             font-size: 1rem;
             font-weight: 600;
             margin-bottom: 4px;
         }
+        .proj_card code {
+            background: var(--surface-2);
+            color: var(--accent-2);
+            padding: 1px 5px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            border: 1px solid var(--border);
+        }
         .proj_date {
             color: var(--text-dim);
-            font-size: 0.78rem;
-            margin-bottom: 10px;
+            font-size: 0.74rem;
+            margin-bottom: 12px;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.06em;
         }
         .proj_card p {
             color: var(--text-muted);
@@ -425,43 +532,48 @@
             line-height: 1.55;
             flex-grow: 1;
         }
-        .proj_lang { margin: 10px 0 0; display: flex; gap: 6px; }
-        .lang_icon {
-            height: 20px;
-            width: auto;
-            opacity: 0.75;
-            filter: grayscale(0.2);
-        }
+        .proj_lang { margin: 12px 0 0; display: flex; gap: 8px; }
+        .lang_icon { height: 20px; width: auto; opacity: 0.75; }
         .proj_tags { margin-top: 12px; }
         .proj_tag {
             display: inline-block;
-            padding: 3px 10px;
-            background: rgba(167,139,250,0.12);
-            color: var(--purple);
-            border-radius: 999px;
-            font-size: 0.75rem;
+            padding: 3px 11px;
+            background: var(--accent-soft);
+            color: var(--accent-2);
+            border: 1px solid var(--accent-border);
+            border-radius: var(--radius-pill);
+            font-size: 0.72rem;
             margin-right: 5px;
             margin-bottom: 5px;
         }
-        .proj_buttons { margin-top: 12px; }
+        .proj_buttons { margin-top: 14px; }
         .proj_btn {
             padding: 5px 12px;
             border: 1px solid var(--border-hi);
-            background: transparent;
+            background: var(--surface);
             color: var(--text-muted);
-            border-radius: 6px;
+            border-radius: 8px;
             cursor: pointer;
             font-size: 0.78rem;
             font-family: inherit;
+            font-weight: 500;
             transition: 0.2s;
+            box-shadow: var(--shadow-sm);
         }
         .proj_btn:hover {
-            color: var(--gold);
-            border-color: var(--gold);
+            color: var(--text);
+            border-color: var(--text);
+            background: var(--surface-2);
+        }
+        .proj_btn.disabled { opacity: 0.45; cursor: not-allowed; }
+        .proj_btn.disabled:hover {
+            color: var(--text-muted);
+            border-color: var(--border-hi);
+            background: var(--surface);
         }
 
         /* ========================================================
-           SERVICE & ROLES — compact tiles
+           SERVICE
            ======================================================== */
         .service_grid {
             display: grid;
@@ -471,26 +583,27 @@
         .service_card {
             background: var(--surface);
             border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 16px 18px;
-            transition: 0.2s;
+            border-radius: var(--radius-card);
+            padding: 16px 20px;
+            transition: 0.25s;
+            box-shadow: var(--shadow-sm);
         }
         .service_card:hover {
+            box-shadow: var(--shadow-md);
             border-color: var(--border-hi);
-            background: var(--surface-2);
         }
         .service_card h3 {
-            color: var(--gold);
+            color: var(--text);
             font-size: 0.98rem;
             font-weight: 600;
             margin-bottom: 2px;
         }
         .service_sub {
             color: var(--text-dim);
-            font-size: 0.78rem;
+            font-size: 0.72rem;
             margin-bottom: 8px;
             text-transform: uppercase;
-            letter-spacing: 0.04em;
+            letter-spacing: 0.06em;
         }
         .service_card p {
             color: var(--text-muted);
@@ -499,52 +612,15 @@
         }
 
         /* ========================================================
-           COLLABORATORS — clean two-column list
+           LOADING STATE
            ======================================================== */
-        .collab_grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 12px;
-        }
-        .collab_card {
+        [data-include]:empty {
+            min-height: 200px;
             background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            padding: 14px 16px;
-            transition: 0.2s;
-        }
-        .collab_card:hover {
-            border-color: var(--gold);
-        }
-        .collab_card.advisor {
-            border-left: 3px solid var(--gold);
-        }
-        .collab_name {
-            color: var(--text);
-            font-weight: 600;
-            font-size: 0.95rem;
-            margin-bottom: 2px;
-        }
-        .collab_name .role {
-            color: var(--gold);
-            font-weight: 500;
-            font-size: 0.78rem;
-            margin-left: 6px;
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
-        }
-        .collab_aff {
-            color: var(--text-muted);
-            font-size: 0.83rem;
-            margin-bottom: 4px;
-        }
-        .collab_links a {
-            color: var(--text-dim);
-            font-size: 0.8rem;
-            margin-right: 10px;
-        }
-        .collab_links a:hover {
-            color: var(--gold);
+            border-radius: var(--radius-card);
+            opacity: 0.4;
+            margin: 24px auto;
+            max-width: 1000px;
         }
 
         /* ========================================================
@@ -557,7 +633,10 @@
             margin-top: 60px;
             font-size: 0.85rem;
         }
-        footer .footer_a_item { color: var(--gold); }
+        footer .footer_a_item {
+            color: var(--accent-2);
+            font-weight: 500;
+        }
 
         /* ========================================================
            RESPONSIVE
@@ -565,16 +644,32 @@
         @media (max-width: 640px) {
             .section { padding: 40px 18px 8px 18px; }
             .nav_bar_inner { gap: 2px; padding: 8px 6px; }
-            .nav_link { font-size: 0.82rem; padding: 5px 10px; }
+            .nav_link { font-size: 0.8rem; padding: 5px 10px; }
+            .header_text h1 { font-size: 2.2em; }
             .edu_top { flex-direction: column; align-items: flex-start; }
             .pub_title { font-size: 0.95rem; }
             .timeline { padding-left: 22px; }
-            .edu_item::before { left: -19px; top: 18px; }
+            .edu_item::before { left: -20px; top: 18px; }
         }
     </style>
 </head>
 
 <body>
+
+<!-- ============== AMBIENT BACKGROUND — faint lattice only ============== -->
+<div class="bg-stack" aria-hidden="true">
+    <svg class="lattice" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <pattern id="lat" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
+                <line x1="0" y1="0" x2="60" y2="0" stroke="rgba(0,0,0,0.035)" stroke-width="1"/>
+                <line x1="0" y1="0" x2="0" y2="60" stroke="rgba(0,0,0,0.035)" stroke-width="1"/>
+                <circle cx="0" cy="0" r="1.4" fill="rgba(29,29,31,0.18)"/>
+            </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#lat)"/>
+    </svg>
+</div>
+
 
 <!-- ====================== HERO ====================== -->
 <header>
@@ -585,62 +680,57 @@
 
     <div class="header_text flex_column_center">
         <h1 class="header_h_item">Kiarash Sedghi</h1>
-        <h2 class="header_h_item">Post-Quantum &amp; Threshold Cryptography</h2>
+        <h2 class="header_h_item">Crytography Researcher</h2>
     </div>
 
     <div class="header_svg_list flex_row_center">
-
-        <!-- Google Scholar -->
         <div class="header_svg_item">
             <a href="https://scholar.google.com/citations?user=B7wAKkEAAAAJ&hl=en" target="_blank" rel="nofollow" title="Google Scholar">
-                <svg viewBox="0 0 24 24" width="28" height="28">
+                <svg viewBox="0 0 24 24" width="26" height="26">
                     <path d="M12 2L1 9l11 7 9-5.727V17h2V9L12 2zm0 9.04L5.15 9 12 4.96 18.85 9 12 11.04zM4 13v4c0 3.314 3.582 6 8 6s8-2.686 8-6v-4l-8 4.727L4 13z"/>
                 </svg>
             </a>
         </div>
-
-        <!-- GitHub -->
         <div class="header_svg_item">
             <a href="https://github.com/kiarashsedghigh" target="_blank" rel="nofollow" title="GitHub">
-                <svg viewBox="0 0 24 24" width="28" height="28">
+                <svg viewBox="0 0 24 24" width="26" height="26">
                     <path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.92.58.11.79-.25.79-.55v-2.1c-3.2.7-3.87-1.55-3.87-1.55-.53-1.34-1.3-1.7-1.3-1.7-1.06-.73.08-.72.08-.72 1.17.08 1.78 1.2 1.78 1.2 1.04 1.78 2.73 1.27 3.4.97.1-.76.41-1.27.74-1.56-2.55-.29-5.23-1.27-5.23-5.65 0-1.25.45-2.27 1.2-3.07-.12-.3-.52-1.52.1-3.17 0 0 .97-.31 3.18 1.17A11.07 11.07 0 0 1 12 6.37c.98.01 1.97.13 2.9.38 2.2-1.48 3.17-1.17 3.17-1.17.63 1.65.23 2.87.11 3.17.75.8 1.19 1.82 1.19 3.07 0 4.4-2.69 5.36-5.25 5.65.42.36.8 1.07.8 2.17v3.22c0 .31.2.67.8.55A10.99 10.99 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5Z"/>
                 </svg>
             </a>
         </div>
-
-        <!-- LinkedIn -->
         <div class="header_svg_item">
             <a href="https://linkedin.com/in/kiarash-sedghi" target="_blank" rel="nofollow" title="LinkedIn">
-                <svg viewBox="0 0 24 24" width="28" height="28">
+                <svg viewBox="0 0 24 24" width="26" height="26">
                     <path d="M4.98 3.5a2.5 2.5 0 11-.01 5.01 2.5 2.5 0 01.01-5.01zM3 9h4v12H3V9zm7 0h3.8v1.71h.05c.53-1 1.82-2.05 3.75-2.05C21.4 8.66 22 11 22 14.27V21h-4v-6.12c0-1.46-.03-3.34-2.03-3.34-2.03 0-2.34 1.58-2.34 3.23V21h-4V9z"/>
                 </svg>
             </a>
         </div>
-
-        <!-- Email -->
         <div class="header_svg_item">
             <a href="mailto:kiarashs@usf.edu" title="Email">
-                <svg viewBox="0 0 24 24" width="26" height="26">
+                <svg viewBox="0 0 24 24" width="24" height="24">
                     <path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6zm-2 0l-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z"/>
                 </svg>
             </a>
         </div>
     </div>
 
-    <!-- BIO -->
     <div class="profile_description_box">
         <p>
-            I am a Ph.D. researcher at the <strong>University of South Florida</strong>
-            working at the intersection of <strong>post-quantum cryptography</strong>
-            and <strong>secure multi-party computation</strong>. My research focuses
-            on the design of <strong>threshold lattice-based digital signatures</strong>
-            &mdash; including the NIST PQC standards ML-DSA and Falcon &mdash; with
-            an emphasis on round complexity, communication efficiency, and signature
-            compactness for scalable, quantum-resistant protocols.
+            I am a Ph.D. researcher at the <strong>University of South Florida</strong>.
+            My current work centers on threshold cryptography &mdash; signatures and KEMs &mdash;
+            and aggregate signatures. In parallel, I follow privacy-related projects.
         </p>
     </div>
 
+    <div class="hero_actions">
+        <a class="cv_btn" href="files/CV.pdf" target="_blank" download>
+            <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+            Download CV
+        </a>
+    </div>
+
 </header>
+
 
 <!-- ====================== STICKY NAV ====================== -->
 <nav class="nav_bar">
@@ -650,557 +740,16 @@
         <a class="nav_link" data-section="publications">Publications</a>
         <a class="nav_link" data-section="projects">Projects</a>
         <a class="nav_link" data-section="service">Service</a>
-        <a class="nav_link" data-section="collaborators">Collaborators</a>
     </div>
 </nav>
 
 
-<!-- ====================== NEWS ====================== -->
-<section class="section" id="news">
-    <div class="section_eyebrow">
-        <span class="dot"></span>
-        <h2>News &amp; Updates</h2>
-    </div>
-
-    <div class="news_grid">
-        <div class="news_item">
-            <span class="when">Dec 2025</span>
-            Our survey <em>&ldquo;A Survey of Threshold Signatures&rdquo;</em>
-            appeared in <strong>ACM Computing Surveys</strong> (Vol. 58, Issue 6).
-        </div>
-        <div class="news_item">
-            <span class="when">Nov 2025</span>
-            Started <strong>Open Threshold Post-Quantum</strong>, a self-maintained
-            C++ library for benchmarking threshold lattice signature schemes under
-            the NIST threshold cryptography call.
-        </div>
-        <div class="news_item">
-            <span class="when">Oct 2025</span>
-            <em>&ldquo;A Full Threshold NIST PQC-Compliant Framework for Distributed
-            Trust in Federal PKI&rdquo;</em> <strong>accepted to IEEE S&amp;P 2026</strong>.
-        </div>
-        <div class="news_item">
-            <span class="when">Aug 2025</span>
-            Attended Simons Institute&apos;s <em>Cryptography 10 Years Later</em>
-            program; began serving as a subreviewer for USENIX Security.
-        </div>
-        <div class="news_item">
-            <span class="when">2024</span>
-            Two provisional patents filed with USF&apos;s TTO on post-quantum
-            authentication and lightweight multiple-time signatures.
-        </div>
-    </div>
-</section>
-
-
-<!-- ====================== BACKGROUND ====================== -->
-<section class="section" id="background">
-    <div class="section_eyebrow">
-        <span class="dot"></span>
-        <h2>Background</h2>
-    </div>
-
-    <div class="timeline">
-
-        <div class="edu_item">
-            <div class="edu_top">
-                <div class="edu_degree">Ph.D. in Computer Science &amp; Engineering</div>
-                <div class="edu_period">2023 &mdash; Expected 2027</div>
-            </div>
-            <div class="edu_school">University of South Florida &middot; Tampa, USA</div>
-            <div class="edu_meta">
-                Research: Post-quantum-secure threshold digital signatures with a
-                focus on lattice-based cryptography and lattice cryptanalysis.
-                Specialization in MPC and lattice-based PQC.
-            </div>
-            <span class="edu_gpa">GPA 4.00 / 4.00</span>
-        </div>
-
-<!--        <div class="edu_item">-->
-<!--            <div class="edu_top">-->
-<!--                <div class="edu_degree">M.S. in Computer Science (MSCP)</div>-->
-<!--                <div class="edu_period">Fall 2025</div>-->
-<!--            </div>-->
-<!--            <div class="edu_school">University of South Florida &middot; Tampa, USA</div>-->
-<!--            <span class="edu_gpa">GPA 4.00 / 4.00</span>-->
-<!--        </div>-->
-
-        <div class="edu_item">
-            <div class="edu_top">
-                <div class="edu_degree">B.Sc. in Computer Science &amp; Engineering</div>
-                <div class="edu_period">2016 &mdash; Sep 2021</div>
-            </div>
-            <div class="edu_school">University of Isfahan &middot; Isfahan, Iran</div>
-            <div class="edu_meta">
-                Thesis: Design and implementation of a Smart Grid gateway enabling
-                interoperability between IEC 61850 and DNP3 protocols on the
-                Raspberry Pi 4.
-            </div>
-            <span class="edu_gpa">GPA 18.04 / 20.00</span>
-            <span class="edu_gpa muted">3rd in cohort</span>
-        </div>
-
-    </div>
-</section>
-
-
-<!-- ====================== PUBLICATIONS ====================== -->
-<section class="section" id="publications">
-    <div class="section_eyebrow">
-        <span class="dot"></span>
-        <h2>Publications</h2>
-        <span class="count">
-            also on
-            <a href="https://scholar.google.com/citations?user=B7wAKkEAAAAJ&hl=en" target="_blank">Google Scholar</a>
-        </span>
-    </div>
-
-    <!-- TABS -->
-    <div class="pub_tabs">
-        <button class="pub_tab active" data-pub="conference">Conference <span class="tab_count">3</span></button>
-        <button class="pub_tab" data-pub="journal">Journal <span class="tab_count">3</span></button>
-        <button class="pub_tab" data-pub="preprint">Preprint <span class="tab_count">4</span></button>
-        <button class="pub_tab" data-pub="patent">Patent <span class="tab_count">2</span></button>
-    </div>
-
-    <!-- CONFERENCE LIST -->
-    <div class="pub_list active" data-pub-list="conference">
-
-        <div class="pub_item">
-            <div class="pub_title">A Full Threshold NIST PQC-Compliant Framework for Distributed Trust in Federal Public Key Infrastructure</div>
-            <div class="pub_authors"><span class="me">K. Sedghighadikolaei</span>, C. Sun, T. Hoang, B. Hamdaoui, A. A. Yavuz</div>
-            <div class="pub_venue">IEEE Symposium on Security &amp; Privacy (S&amp;P) &middot; 2026 &middot; Accepted</div>
-            <div class="pub_buttons">
-                <button class="pub_btn" onclick="toggleAbstract(this)">Abstract</button>
-            </div>
-            <div class="pub_abstract">
-                A full-threshold framework for distributed trust in federal PKI
-                built from NIST-standardized post-quantum primitives. The
-                construction targets distributed key generation and signing
-                without a trusted dealer, with attention to practicality for
-                federal deployment.
-            </div>
-        </div>
-
-        <div class="pub_item">
-            <div class="pub_title">Fast and Post-Quantum Authentication for Real-time Next Generation Networks with Bloom Filter</div>
-            <div class="pub_authors"><span class="me">K. Sedghighadikolaei</span>, A. Yavuz</div>
-            <div class="pub_venue">IEEE TPS-ISA &middot; 2024</div>
-            <div class="pub_buttons">
-                <button class="pub_btn" onclick="toggleAbstract(this)">Abstract</button>
-            </div>
-            <div class="pub_abstract">
-                A fast post-quantum authentication scheme for real-time
-                next-generation networks that leverages Bloom filters as a
-                probabilistic data structure to reduce signer and verifier cost
-                while preserving security against quantum adversaries.
-            </div>
-        </div>
-
-        <div class="pub_item">
-            <div class="pub_title">Beyond Basic Trust: Envisioning the Future of NextGen Networked Systems and Digital Signatures</div>
-            <div class="pub_authors">A. Yavuz, <span class="me">K. Sedghighadikolaei</span>, S. Darzi, S. Nouma</div>
-            <div class="pub_venue">IEEE TPS-ISA &middot; 2023 &middot; pp. 267&ndash;276</div>
-            <div class="pub_buttons">
-                <button class="pub_btn" onclick="toggleAbstract(this)">Abstract</button>
-            </div>
-            <div class="pub_abstract">
-                A vision paper on open challenges and emerging directions for
-                digital signatures in next-generation networked systems,
-                including post-quantum, distributed, and threshold settings.
-            </div>
-        </div>
-
-    </div>
-
-    <!-- JOURNAL LIST -->
-    <div class="pub_list" data-pub-list="journal">
-
-        <div class="pub_item">
-            <div class="pub_title">A Survey of Threshold Signatures: NIST Standards, Post-Quantum Cryptography, Exotic Techniques, and Real-World Applications</div>
-            <div class="pub_authors"><span class="me">K. Sedghighadikolaei</span>, A. A. Yavuz</div>
-            <div class="pub_venue">ACM Computing Surveys &middot; 58(6), 1&ndash;39 &middot; 2025</div>
-            <div class="pub_buttons">
-                <button class="pub_btn" onclick="window.open('https://dl.acm.org/doi/full/10.1145/3772274','_blank')">DOI</button>
-                <button class="pub_btn" onclick="toggleAbstract(this)">Abstract</button>
-            </div>
-            <div class="pub_abstract">
-                A comprehensive and systematic survey of threshold and distributed
-                signatures with advanced features, covering NIST standards,
-                post-quantum constructions, exotic techniques (aggregate, blind,
-                ring-threshold variants), and real-world applications.
-            </div>
-        </div>
-
-        <div class="pub_item">
-            <div class="pub_title">Efficient Fault-Detection Architectures for Barrett Reduction and Multiplication in Classical and Post-Quantum Cryptographic Systems</div>
-            <div class="pub_authors">S. Aghapour, <span class="me">K. Sedghighadikolaei</span>, A. A. Yavuz, B. Hamdaoui, M. Mozaffari-Kermani</div>
-            <div class="pub_venue">IEEE Transactions on VLSI Systems &middot; 2025</div>
-            <div class="pub_buttons">
-                <button class="pub_btn" onclick="toggleAbstract(this)">Abstract</button>
-            </div>
-            <div class="pub_abstract">
-                Hardware fault-detection architectures for Barrett reduction and
-                modular multiplication used in classical and post-quantum
-                cryptosystems, providing resilience against fault-injection
-                attacks with low overhead.
-            </div>
-        </div>
-
-        <div class="pub_item">
-            <div class="pub_title">Signer-Optimal Multiple-Time Post-Quantum Hash-Based Signature for Heterogeneous IoT Systems</div>
-            <div class="pub_authors"><span class="me">K. Sedghighadikolaei</span>, A. Yavuz, S. Nouma</div>
-            <div class="pub_venue">Elsevier Internet of Things &middot; 2025 &middot; 101694</div>
-            <div class="pub_buttons">
-                <button class="pub_btn" onclick="window.open('https://github.com/kiarashsedghigh','_blank')">Code</button>
-                <button class="pub_btn" onclick="toggleAbstract(this)">Abstract</button>
-            </div>
-            <div class="pub_abstract">
-                A signer-optimal multiple-time post-quantum hash-based signature
-                designed for heterogeneous IoT (smart grids, medical devices,
-                cyber-physical systems), trading verifier-side state for minimal
-                signer cost and storage.
-            </div>
-        </div>
-
-    </div>
-
-    <!-- PREPRINT LIST -->
-    <div class="pub_list" data-pub-list="preprint">
-
-        <div class="pub_item">
-            <div class="pub_title">Lightweight Authentication for Data Provenance with DKG</div>
-            <div class="pub_authors"><span class="me">K. Sedghighadikolaei</span>, et al.</div>
-            <div class="pub_venue">To be submitted &middot; 2026</div>
-        </div>
-
-        <div class="pub_item">
-            <div class="pub_title">PQ-Secure Aggregate Signature</div>
-            <div class="pub_authors"><span class="me">K. Sedghighadikolaei</span>, et al.</div>
-            <div class="pub_venue">To be submitted &middot; 2026</div>
-        </div>
-
-        <div class="pub_item">
-            <div class="pub_title">QPADL: Post-Quantum Private Spectrum Access with Verified Location and DoS Resilience</div>
-            <div class="pub_authors">S. Darzi, S. Nouma, <span class="me">K. Sedghighadikolaei</span>, A. Yavuz</div>
-            <div class="pub_venue">arXiv:2510.03631 &middot; 2025</div>
-            <div class="pub_buttons">
-                <button class="pub_btn" onclick="window.open('https://arxiv.org/abs/2510.03631','_blank')">arXiv</button>
-            </div>
-        </div>
-
-        <div class="pub_item">
-            <div class="pub_title">Privacy-Preserving and Trustworthy Deep Learning for Medical Imaging</div>
-            <div class="pub_authors"><span class="me">K. Sedghighadikolaei</span>, A. Yavuz</div>
-            <div class="pub_venue">arXiv:2407.00538 &middot; 2024</div>
-            <div class="pub_buttons">
-                <button class="pub_btn" onclick="window.open('https://arxiv.org/abs/2407.00538','_blank')">arXiv</button>
-            </div>
-        </div>
-
-    </div>
-
-    <!-- PATENT LIST -->
-    <div class="pub_list" data-pub-list="patent">
-
-        <div class="pub_item">
-            <div class="pub_title">A Lightweight Multiple-Time Post-Quantum Signature for Heterogeneous Internet of Things</div>
-            <div class="pub_authors">A. Yavuz, <span class="me">K. Sedghighadikolaei</span></div>
-            <div class="pub_venue">USF TTO Ref. 25T013PR-CS &middot; Provisional Patent Filed (Aug 2024)</div>
-        </div>
-
-        <div class="pub_item">
-            <div class="pub_title">Efficient, Scalable and Post-Quantum Authentication for Real-time Next Generation Networks with Probabilistic Data Structures</div>
-            <div class="pub_authors">A. Yavuz, <span class="me">K. Sedghighadikolaei</span></div>
-            <div class="pub_venue">USF TTO Ref. 24T240PR-CS &middot; Provisional Patent Filed (Jun 2024)</div>
-        </div>
-
-    </div>
-</section>
-
-
-<!-- ====================== PROJECTS ====================== -->
-<section class="section" id="projects">
-    <div class="section_eyebrow">
-        <span class="dot"></span>
-        <h2>Projects</h2>
-    </div>
-
-    <div class="proj_grid">
-
-        <div class="proj_card">
-            <h3>Open Threshold Post-Quantum</h3>
-            <div class="proj_date">Nov 2025 — Present</div>
-            <p>Self-maintained C++ library establishing a common framework for
-                threshold lattice-based signature schemes, aligned with NIST&apos;s
-                threshold cryptography call.</p>
-            <div class="proj_lang">
-                <img class="lang_icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg">
-                <img class="lang_icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg">
-            </div>
-            <div class="proj_tags">
-                <span class="proj_tag">PQC</span>
-                <span class="proj_tag">Threshold</span>
-                <span class="proj_tag">Lattices</span>
-            </div>
-            <div class="proj_buttons">
-                <button class="proj_btn" onclick="window.open('https://github.com/kiarashsedghigh','_blank')">Code</button>
-            </div>
-        </div>
-
-        <div class="proj_card">
-            <h3>Sparse LWE Kit</h3>
-            <div class="proj_date">Oct 2024 — Present</div>
-            <p>Research toolkit for transparent security estimation and parameter
-                guidance for LWE / RLWE FHE schemes with sparse secret keys.</p>
-            <div class="proj_lang">
-                <img class="lang_icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg">
-            </div>
-            <div class="proj_tags">
-                <span class="proj_tag">LWE</span>
-                <span class="proj_tag">FHE</span>
-                <span class="proj_tag">Cryptanalysis</span>
-            </div>
-            <div class="proj_buttons">
-                <button class="proj_btn" onclick="window.open('https://github.com/kiarashsedghigh','_blank')">Code</button>
-            </div>
-        </div>
-
-        <div class="proj_card">
-            <h3>FHE ML Inference Benchmark</h3>
-            <div class="proj_date">Oct 2024 — Present</div>
-            <p>FHE benchmarking for the BERT language model using OpenFHE.
-                Initiated at the Oct 2024 HE Standards Meeting in Salt Lake City.</p>
-            <div class="proj_lang">
-                <img class="lang_icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg">
-            </div>
-            <div class="proj_tags">
-                <span class="proj_tag">FHE</span>
-                <span class="proj_tag">OpenFHE</span>
-                <span class="proj_tag">BERT</span>
-            </div>
-            <div class="proj_buttons">
-                <button class="proj_btn" onclick="window.open('https://github.com/kiarashsedghigh','_blank')">Code</button>
-            </div>
-        </div>
-
-        <div class="proj_card">
-            <h3>mumhors</h3>
-            <div class="proj_date">Oct 2024</div>
-            <p>Reference implementation of the Elsevier IoT 2025 paper on
-                signer-optimal multiple-time hash-based signatures, and the
-                corresponding patent.</p>
-            <div class="proj_lang">
-                <img class="lang_icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg">
-                <img class="lang_icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg">
-            </div>
-            <div class="proj_tags">
-                <span class="proj_tag">Hash-Based</span>
-                <span class="proj_tag">IoT</span>
-                <span class="proj_tag">PQC</span>
-            </div>
-            <div class="proj_buttons">
-                <button class="proj_btn" onclick="window.open('https://github.com/kiarashsedghigh','_blank')">Code</button>
-            </div>
-        </div>
-
-        <div class="proj_card">
-            <h3>tvpdhors</h3>
-            <div class="proj_date">Apr 2024</div>
-            <p>Reference implementation of the IEEE TPS-ISA 2024 paper on
-                Bloom-filter post-quantum authentication, and the corresponding
-                patent.</p>
-            <div class="proj_lang">
-                <img class="lang_icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg">
-                <img class="lang_icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg">
-            </div>
-            <div class="proj_tags">
-                <span class="proj_tag">Bloom Filter</span>
-                <span class="proj_tag">Auth</span>
-                <span class="proj_tag">NextGen</span>
-            </div>
-            <div class="proj_buttons">
-                <button class="proj_btn" onclick="window.open('https://github.com/kiarashsedghigh','_blank')">Code</button>
-            </div>
-        </div>
-
-        <div class="proj_card">
-            <h3>xv6 (RISC-V)</h3>
-            <div class="proj_date">Dec 2023</div>
-            <p>Contributions to xv6 on RISC-V for the Ph.D. Operating Systems
-                core course: scheduler, virtual memory, and shell extensions.</p>
-            <div class="proj_lang">
-                <img class="lang_icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg">
-            </div>
-            <div class="proj_tags">
-                <span class="proj_tag">OS</span>
-                <span class="proj_tag">RISC-V</span>
-                <span class="proj_tag">Kernel</span>
-            </div>
-            <div class="proj_buttons">
-                <button class="proj_btn" onclick="window.open('https://github.com/kiarashsedghigh','_blank')">Code</button>
-            </div>
-        </div>
-
-        <div class="proj_card">
-            <h3>kfw</h3>
-            <div class="proj_date">Jul 2020</div>
-            <p>Linux-kernel firewall with a Cisco MQC-inspired CLI &mdash; a more
-                intuitive alternative to iptables for system administrators.</p>
-            <div class="proj_lang">
-                <img class="lang_icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg">
-                <img class="lang_icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg">
-            </div>
-            <div class="proj_tags">
-                <span class="proj_tag">Networking</span>
-                <span class="proj_tag">Linux</span>
-            </div>
-        </div>
-
-        <div class="proj_card">
-            <h3>luluc</h3>
-            <div class="proj_date">Dec 2019</div>
-            <p>A compiler for the Lulu programming language built with Python 3
-                and ANTLR4. B.Sc. Compiler Design course project.</p>
-            <div class="proj_lang">
-                <img class="lang_icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg">
-            </div>
-            <div class="proj_tags">
-                <span class="proj_tag">Compilers</span>
-                <span class="proj_tag">ANTLR4</span>
-            </div>
-            <div class="proj_buttons">
-                <button class="proj_btn" onclick="window.open('https://github.com/kiarashsedghigh','_blank')">Code</button>
-            </div>
-        </div>
-
-    </div>
-</section>
-
-
-<!-- ====================== SERVICE & ROLES ====================== -->
-<section class="section" id="service">
-    <div class="section_eyebrow">
-        <span class="dot"></span>
-        <h2>Service &amp; Roles</h2>
-    </div>
-
-    <div class="service_grid">
-
-        <div class="service_card">
-            <h3>Research Assistant</h3>
-            <div class="service_sub">USF &middot; Spring 2025 — Present</div>
-            <p>Designing and implementing threshold digital signatures with
-                post-quantum security, focused on lattice-based constructions.</p>
-        </div>
-
-        <div class="service_card">
-            <h3>Teaching Assistant</h3>
-            <div class="service_sub">USF &middot; 2023 — 2024</div>
-            <p>Materials development for IT Data Structures; graded IT Security
-                Systems, IT Concepts, Cloud Computing, and Introduction to
-                Databases.</p>
-        </div>
-
-        <div class="service_card">
-            <h3>Teaching Assistant</h3>
-            <div class="service_sub">Univ. of Isfahan &middot; 2019, 2020</div>
-            <p>Prepared instructional content and evaluated student performance
-                for Data Structures and Compiler Design.</p>
-        </div>
-
-        <div class="service_card">
-            <h3>Subreviewer</h3>
-            <div class="service_sub">USENIX Security &middot; Since Aug 2025</div>
-            <p>Reviewing submissions for the USENIX Security Symposium.</p>
-        </div>
-
-        <div class="service_card">
-            <h3>Reviewer — IEEE</h3>
-            <div class="service_sub">2024 — Present</div>
-            <p>IEEE TIFS, TDSC, TON, TNSE, HOST, Internet of Things Journal.
-                TDSC Reviewer Certification (Fall 2025).</p>
-        </div>
-
-        <div class="service_card">
-            <h3>Reviewer — ACM / Elsevier</h3>
-            <div class="service_sub">2025 — Present</div>
-            <p>ACM TOPS, ACM TIOT, and Elsevier Internet of Things.</p>
-        </div>
-
-        <div class="service_card">
-            <h3>Selected Workshops</h3>
-            <div class="service_sub">2024 — 2025</div>
-            <p>Simons Institute (Cryptography 10 Years Later 2025; Lattices 2024);
-                HE.org 7th Standards Meeting; NIST WPEC 2024; Berkeley Summit
-                on Responsible Decentralized Intelligence.</p>
-        </div>
-
-        <div class="service_card">
-            <h3>Honors &amp; Awards</h3>
-            <div class="service_sub">Selected</div>
-            <p>NSF Student Travel Grant for IEEE TPS 2024 ($1,000); USF Travel
-                Grant ($2,450); 3rd by GPA in B.Sc. cohort at Univ. of Isfahan.</p>
-        </div>
-
-    </div>
-</section>
-
-
-<!-- ====================== COLLABORATORS ====================== -->
-<section class="section" id="collaborators">
-    <div class="section_eyebrow">
-        <span class="dot"></span>
-        <h2>Collaborators</h2>
-    </div>
-
-    <div class="collab_grid">
-
-        <div class="collab_card advisor">
-            <div class="collab_name">Prof. Attila A. Yavuz <span class="role">Advisor</span></div>
-            <div class="collab_aff">Associate Professor, University of South Florida</div>
-            <div class="collab_links">
-                <a href="https://scholar.google.com/citations?user=Lt4uXIIAAAAJ" target="_blank">Scholar</a>
-            </div>
-        </div>
-
-        <div class="collab_card">
-            <div class="collab_name">Prof. Mehran Mozaffari Kermani</div>
-            <div class="collab_aff">University of South Florida &middot; Hardware Security</div>
-        </div>
-
-        <div class="collab_card">
-            <div class="collab_name">Prof. Bechir Hamdaoui</div>
-            <div class="collab_aff">Oregon State University &middot; Wireless &amp; Network Security</div>
-        </div>
-
-        <div class="collab_card">
-            <div class="collab_name">Prof. Thang Hoang</div>
-            <div class="collab_aff">Co-PI, NSF SaTC CORE Medium &middot; Trustworthy NextG Networks</div>
-        </div>
-
-        <div class="collab_card">
-            <div class="collab_name">Saif E. Nouma</div>
-            <div class="collab_aff">Ph.D. Student, University of South Florida</div>
-        </div>
-
-        <div class="collab_card">
-            <div class="collab_name">Saleh Darzi</div>
-            <div class="collab_aff">Ph.D. Student, University of South Florida</div>
-        </div>
-
-        <div class="collab_card">
-            <div class="collab_name">Saeed Aghapour</div>
-            <div class="collab_aff">Ph.D. Student, University of South Florida</div>
-        </div>
-
-        <div class="collab_card">
-            <div class="collab_name">Chenghong Sun</div>
-            <div class="collab_aff">Co-author, IEEE S&amp;P 2026</div>
-        </div>
-
-    </div>
-</section>
+<!-- ====================== INCLUDES ====================== -->
+<div data-include="data/news.html"></div>
+<div data-include="data/background.html"></div>
+<div data-include="data/publications.html"></div>
+<div data-include="data/projects.html"></div>
+<div data-include="data/service.html"></div>
 
 
 <footer>
@@ -1213,19 +762,61 @@
 
 <!-- ====================== JS ====================== -->
 <script>
-    /* ---- Publication tabs ---- */
-    const pubTabs  = document.querySelectorAll('.pub_tab');
-    const pubLists = document.querySelectorAll('.pub_list');
+    /* -------- Include loader -------- */
+    async function loadIncludes() {
+        const els = document.querySelectorAll('[data-include]');
+        await Promise.all([...els].map(async el => {
+            try {
+                const res = await fetch(el.dataset.include);
+                if (!res.ok) throw new Error(res.status + ' ' + res.statusText);
+                el.outerHTML = await res.text();
+            } catch (err) {
+                el.innerHTML =
+                    '<div class="section"><p style="color:#cc4444;text-align:center;">' +
+                    'Failed to load <code>' + el.dataset.include + '</code>: ' + err.message +
+                    '<br><small>If you opened this page via file://, run a local server ' +
+                    '(e.g. <code>python -m http.server</code>) instead.</small></p></div>';
+            }
+        }));
+    }
 
-    pubTabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-            const target = tab.dataset.pub;
-            pubTabs.forEach(t  => t.classList.toggle('active', t === tab));
-            pubLists.forEach(l => l.classList.toggle('active', l.dataset.pubList === target));
+    /* -------- Init after fragments are in the DOM -------- */
+    function initPage() {
+        const pubTabs  = document.querySelectorAll('.pub_tab');
+        const pubLists = document.querySelectorAll('.pub_list');
+        pubTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const target = tab.dataset.pub;
+                pubTabs.forEach(t  => t.classList.toggle('active', t === tab));
+                pubLists.forEach(l => l.classList.toggle('active', l.dataset.pubList === target));
+            });
         });
-    });
 
-    /* ---- Abstract toggle ---- */
+        const navLinks = document.querySelectorAll('.nav_link');
+        const sections = Array.from(navLinks).map(a => document.getElementById(a.dataset.section));
+        navLinks.forEach((a, i) => {
+            a.addEventListener('click', e => {
+                e.preventDefault();
+                const target = sections[i];
+                if (target) {
+                    const y = target.getBoundingClientRect().top + window.scrollY - 70;
+                    window.scrollTo({ top: y, behavior: 'smooth' });
+                }
+            });
+        });
+        function onScrollSpy() {
+            const fromTop = window.scrollY + 120;
+            let activeIdx = 0;
+            sections.forEach((sec, i) => {
+                if (sec && sec.offsetTop <= fromTop) activeIdx = i;
+            });
+            navLinks.forEach((a, i) => a.classList.toggle('active', i === activeIdx));
+        }
+        window.addEventListener('scroll', onScrollSpy, { passive: true });
+        onScrollSpy();
+    }
+
+    /* -------- Abstract toggle (global) -------- */
     function toggleAbstract(button) {
         const item = button.closest('.pub_item');
         const abs  = item.querySelector('.pub_abstract');
@@ -1235,32 +826,7 @@
         button.innerText = open ? 'Abstract' : 'Hide Abstract';
     }
 
-    /* ---- Sticky nav: anchor scroll + scroll-spy ---- */
-    const navLinks = document.querySelectorAll('.nav_link');
-    const sections = Array.from(navLinks).map(a => document.getElementById(a.dataset.section));
-
-    navLinks.forEach((a, i) => {
-        a.addEventListener('click', e => {
-            e.preventDefault();
-            const target = sections[i];
-            if (target) {
-                const y = target.getBoundingClientRect().top + window.scrollY - 70;
-                window.scrollTo({ top: y, behavior: 'smooth' });
-            }
-        });
-    });
-
-    /* Scroll-spy: highlight nav link of section currently in view */
-    function onScrollSpy() {
-        const fromTop = window.scrollY + 120;
-        let activeIdx = 0;
-        sections.forEach((sec, i) => {
-            if (sec && sec.offsetTop <= fromTop) activeIdx = i;
-        });
-        navLinks.forEach((a, i) => a.classList.toggle('active', i === activeIdx));
-    }
-    window.addEventListener('scroll', onScrollSpy, { passive: true });
-    onScrollSpy();
+    loadIncludes().then(initPage);
 </script>
 
 </body>

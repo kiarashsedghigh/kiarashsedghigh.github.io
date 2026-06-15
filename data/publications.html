@@ -1,414 +1,200 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kiarash Sedghi Personal Website</title>
-    <meta name="description" content="Your Description">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap">
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/style.css">
-
-    <!-- ---------------- MODAL CSS ---------------- -->
-    <style>
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            padding-top: 70px;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow-y: auto;
-            backdrop-filter: blur(6px);
-            background-color: rgba(0, 0, 0, 0.6);
-        }
-
-        /* EDUCATION MODAL (default) */
-        .modal_content {
-            background-color: #ffffff;
-            margin: auto;
-            padding: 25px;
-            border-radius: 12px;
-            width: 70%;
-            max-width: 700px;
-            font-family: Inter, sans-serif;
-            animation: fadeIn 0.3s ease;
-        }
-
-        /* PUBLICATIONS MODAL — WIDE VERSION */
-        .modal_content_wide {
-            background-color: #ffffff;
-            margin: auto;
-            padding: 30px;
-            border-radius: 12px;
-            width: 90%;
-            max-width: 1200px;
-            font-family: Inter, sans-serif;
-            animation: fadeIn 0.3s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to   { opacity: 1; transform: translateY(0); }
-        }
-
-        .modal_close {
-            float: right;
-            font-size: 30px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .modal_close:hover {
-            color: #f44336;
-        }
-
-        /* ---------------- PUBLICATIONS ACCORDION CSS ---------------- */
-
-        .accordion_item {
-            background: #f2f2f2;
-            border-radius: 10px;
-            margin-bottom: 1rem;
-            overflow: hidden;
-        }
-
-        .accordion_header {
-            padding: 1rem;
-            font-size: 1.3rem;
-            font-weight: 600;
-            cursor: pointer;
-            background: #e8e8e8;
-            border-bottom: 1px solid #ccc;
-        }
-
-        .accordion_content {
-            display: none;
-            padding: 1rem;
-            background: #fafafa;
-        }
-
-        .pub_item {
-            padding: 1rem 0;
-            border-bottom: 1px solid #ddd;
-        }
-
-        .pub_buttons {
-            margin-top: .8rem;
-        }
-
-        .pub_btn, .abs_btn {
-            padding: 7px 12px;
-            border: none;
-            background: #444;
-            color: white;
-            border-radius: 6px;
-            margin-right: 10px;
-            cursor: pointer;
-        }
-
-        .pub_btn:hover, .abs_btn:hover {
-            background: #000;
-        }
-
-        .pub_abstract {
-            margin-top: .7rem;
-            font-size: 0.95rem;
-            color: #444;
-            display: none;
-            line-height: 1.45;
-        }
-    </style>
-</head>
-
-<body>
-
-<header>
-
-    <div class="header_img flex_column_center">
-        <img src="img/profile.jpg" alt="Profile" />
+<section class="section" id="publications">
+    <div class="section_eyebrow">
+        <span class="dot"></span><h2>Publications</h2>
+        <span class="count">
+            also on <a href="https://scholar.google.com/citations?user=B7wAKkEAAAAJ&hl=en" target="_blank">Google Scholar</a>
+        </span>
     </div>
 
-    <div class="header_text flex_column_center">
-        <h1 class="header_h_item">Kiarash Sedghi</h1>
-        <h2 class="header_h_item">Post-quantum and Threshold Cryptography</h2>
+    <div class="pub_tabs">
+        <button class="pub_tab active" data-pub="articles">Articles <span class="tab_count">6</span></button>
+        <button class="pub_tab" data-pub="preprint">Preprint <span class="tab_count">4</span></button>
+        <button class="pub_tab" data-pub="patent">Patent <span class="tab_count">2</span></button>
     </div>
 
-    <!-- Social Icons -->
-    <div class="header_svg_list flex_row_center">
 
-        <!-- Icon 1 -->
-        <div class="header_svg_item">
-            <a href="#link" target="_blank" rel="nofollow">
-                <svg viewBox="0 0 24 24">
-                    <path d="M18,10.561a.494..."></path>
-                    <path d="M16.646,13.632a..."></path>
-                    <path d="M15.312,16.583a..."></path>
-                    <path d="M12,23A11..."></path>
-                </svg>
-            </a>
-        </div>
+    <!-- ============= ARTICLES (Conference + Journal, chronological) ============= -->
+    <div class="pub_list active" data-pub-list="articles">
 
-        <!-- Icon 2 -->
-        <div class="header_svg_item">
-            <a href="#link" target="_blank" rel="nofollow">
-                <svg viewBox="0 0 24 24">
-                    <path d="m2.538 3..."></path>
-                </svg>
-            </a>
-        </div>
-
-        <!-- Icon 3 -->
-        <div class="header_svg_item">
-            <a href="#link" target="_blank" rel="nofollow">
-                <svg viewBox="0 0 24 24">
-                    <path d="M21.938,7.71a..."></path>
-                    <path d="M17.581,5.467a..."></path>
-                    <path d="M12,7.073A..."></path>
-                </svg>
-            </a>
-        </div>
-
-        <!-- Icon 4 -->
-        <div class="header_svg_item">
-            <a href="#link" target="_blank" rel="nofollow">
-                <svg viewBox="0 0 24 24">
-                    <path d="M7.285,23.5a..."></path>
-                    <path d="M10.822,17.607a..."></path>
-                    <path d="M15.857,10.386a..."></path>
-                    <path d="M12.357,10.386a..."></path>
-                </svg>
-            </a>
-        </div>
-
-    </div>
-
-    <nav>
-        <ul class="header_nav_menu_list flex_no_wrap_row_center">
-            <li class="header_nav_menu_item">Education</li>
-            <li class="header_nav_menu_item">Menu 2</li>
-            <li class="header_nav_menu_item">Menu 3</li>
-        </ul>
-    </nav>
-
-</header>
-
-<main>
-
-    <section id="main_section_container_1" class="flex_column_center">
-
-        <div class="main_small_button_list">
-
-            <a id="openEducationModal" class="main_small_a_item" href="javascript:void(0);">
-                <button class="main_small_button_item">Background</button>
-            </a>
-
-            <!-- ⭐ PUBLICATIONS BUTTON NOW OPENS MODAL ⭐ -->
-            <a id="openPublicationsModal" class="main_small_a_item" href="javascript:void(0);">
-                <button class="main_small_button_item">Publications</button>
-            </a>
-
-        </div>
-
-        <div class="main_small_button_list">
-            <a class="main_small_a_item" href="#projects">
-                <button class="main_small_button_item">Projects</button>
-            </a>
-
-            <a class="main_small_a_item" href="#collab">
-                <button class="main_small_button_item">Collaborations</button>
-            </a>
-        </div>
-
-    </section>
-
-    <section id="main_section_container_2" class="flex_column_center">
-        <div class="main_text_item">
-            <p>Menu 2 text lorem ipsum dolor sit amet…</p>
-        </div>
-    </section>
-
-    <section id="main_section_container_3" class="flex_column_center">
-        <div class="main_text_item">
-            <p>Menu 3 text lorem ipsum dolor sit amet…</p>
-        </div>
-    </section>
-
-</main>
-
-<footer>
-    <div class="footer_div_item flex_row_center">
-        <a class="footer_a_item" href="#link">Kiarash Sedghi</a> | Copyright Text
-    </div>
-</footer>
-
-<!-- ⭐ EDUCATION MODAL ⭐ -->
-<div id="educationModal" class="modal">
-    <div class="modal_content">
-        <span class="modal_close">&times;</span>
-
-        <h2>Education Background</h2>
-
-        <div style="display:flex;align-items:center;gap:15px;margin-bottom:15px;">
-            <img src="img/usflag.png" style="height:30px;">
-            <img src="img/usf_logo.jpg" style="height:35px;">
-            <div>
-                <h3><strong>Ph.D. in Computer Science</strong></h3>
-                <p>University of South Florida (2021–Present)</p>
+        <div class="pub_item">
+            <div class="pub_title">
+                <span class="pub_type conf">Conf</span>
+                A Full Threshold NIST PQC-Compliant Framework for Distributed Trust in Federal Public Key Infrastructure
+            </div>
+            <div class="pub_authors"><span class="me">K. Sedghighadikolaei</span>, C. Sun, T. Hoang, B. Hamdaoui, A. A. Yavuz</div>
+            <div class="pub_venue">IEEE Symposium on Security &amp; Privacy (S&amp;P) &middot; 2026 &middot; Accepted</div>
+            <div class="pub_buttons">
+                <button class="pub_btn" onclick="toggleAbstract(this)">Abstract</button>
+                <button class="pub_btn disabled" title="PDF will be available after publication">PDF</button>
+                <button class="pub_btn" onclick="window.open('https://github.com/open-threshold-pqc','_blank')">Code</button>
+            </div>
+            <div class="pub_abstract">
+                A full-threshold framework for distributed trust in federal PKI built
+                from NIST-standardized post-quantum primitives. The construction targets
+                distributed key generation and signing without a trusted dealer, with
+                attention to practicality for federal deployment.
             </div>
         </div>
 
-        <hr>
+        <div class="pub_item">
+            <div class="pub_title">
+                <span class="pub_type jnl">Journal</span>
+                A Survey of Threshold Signatures: NIST Standards, Post-Quantum Cryptography, Exotic Techniques, and Real-World Applications
+            </div>
+            <div class="pub_authors"><span class="me">K. Sedghighadikolaei</span>, A. A. Yavuz</div>
+            <div class="pub_venue">ACM Computing Surveys &middot; 58(6), 1&ndash;39 &middot; 2025</div>
+            <div class="pub_buttons">
+                <button class="pub_btn" onclick="toggleAbstract(this)">Abstract</button>
+                <button class="pub_btn" onclick="window.open('https://dl.acm.org/doi/full/10.1145/3772274','_blank')">PDF</button>
+                <button class="pub_btn" onclick="window.open('https://dl.acm.org/doi/full/10.1145/3772274','_blank')">DOI</button>
+            </div>
+            <div class="pub_abstract">
+                A comprehensive and systematic survey of threshold and distributed
+                signatures with advanced features, covering NIST standards,
+                post-quantum constructions, exotic techniques (aggregate, blind,
+                ring-threshold variants), and real-world applications.
+            </div>
+        </div>
 
-        <div style="display:flex;align-items:center;gap:15px;">
-            <img src="img/iranflag.png" style="height:30px;">
-            <img src="img/sbu_logo.png" style="height:35px;">
-            <div>
-                <h3><strong>B.Sc. in Computer Engineering</strong></h3>
-                <p>Shahid Beheshti University (2016–2020)</p>
+        <div class="pub_item">
+            <div class="pub_title">
+                <span class="pub_type jnl">Journal</span>
+                Efficient Fault-Detection Architectures for Barrett Reduction and Multiplication in Classical and Post-Quantum Cryptographic Systems
+            </div>
+            <div class="pub_authors">S. Aghapour, <span class="me">K. Sedghighadikolaei</span>, A. A. Yavuz, B. Hamdaoui, M. Mozaffari-Kermani</div>
+            <div class="pub_venue">IEEE Transactions on VLSI Systems &middot; 2025</div>
+            <div class="pub_buttons">
+                <button class="pub_btn" onclick="toggleAbstract(this)">Abstract</button>
+                <button class="pub_btn" onclick="window.open('files/papers/tvlsi2025_barrett.pdf','_blank')">PDF</button>
+            </div>
+            <div class="pub_abstract">
+                Hardware fault-detection architectures for Barrett reduction and
+                modular multiplication used in classical and post-quantum
+                cryptosystems, providing resilience against fault-injection attacks
+                with low overhead.
+            </div>
+        </div>
+
+        <div class="pub_item">
+            <div class="pub_title">
+                <span class="pub_type jnl">Journal</span>
+                Signer-Optimal Multiple-Time Post-Quantum Hash-Based Signature for Heterogeneous IoT Systems
+            </div>
+            <div class="pub_authors"><span class="me">K. Sedghighadikolaei</span>, A. Yavuz, S. Nouma</div>
+            <div class="pub_venue">Elsevier Internet of Things &middot; 2025 &middot; 101694</div>
+            <div class="pub_buttons">
+                <button class="pub_btn" onclick="toggleAbstract(this)">Abstract</button>
+                <button class="pub_btn" onclick="window.open('https://doi.org/10.1016/j.iot.2025.101694','_blank')">PDF</button>
+                <button class="pub_btn" onclick="window.open('https://github.com/kiarashsedghigh/mumhors','_blank')">Code</button>
+            </div>
+            <div class="pub_abstract">
+                A signer-optimal multiple-time post-quantum hash-based signature
+                designed for heterogeneous IoT (smart grids, medical devices,
+                cyber-physical systems), trading verifier-side state for minimal
+                signer cost and storage.
+            </div>
+        </div>
+
+        <div class="pub_item">
+            <div class="pub_title">
+                <span class="pub_type conf">Conf</span>
+                Fast and Post-Quantum Authentication for Real-time Next Generation Networks with Bloom Filter
+            </div>
+            <div class="pub_authors"><span class="me">K. Sedghighadikolaei</span>, A. Yavuz</div>
+            <div class="pub_venue">IEEE TPS-ISA &middot; 2024</div>
+            <div class="pub_buttons">
+                <button class="pub_btn" onclick="toggleAbstract(this)">Abstract</button>
+                <button class="pub_btn" onclick="window.open('files/papers/tpsisa2024_bloom.pdf','_blank')">PDF</button>
+                <button class="pub_btn" onclick="window.open('https://github.com/kiarashsedghigh/tvpdhors','_blank')">Code</button>
+            </div>
+            <div class="pub_abstract">
+                A fast post-quantum authentication scheme for real-time
+                next-generation networks that leverages Bloom filters as a
+                probabilistic data structure to reduce signer and verifier cost
+                while preserving security against quantum adversaries.
+            </div>
+        </div>
+
+        <div class="pub_item">
+            <div class="pub_title">
+                <span class="pub_type conf">Conf</span>
+                Beyond Basic Trust: Envisioning the Future of NextGen Networked Systems and Digital Signatures
+            </div>
+            <div class="pub_authors">A. Yavuz, <span class="me">K. Sedghighadikolaei</span>, S. Darzi, S. Nouma</div>
+            <div class="pub_venue">IEEE TPS-ISA &middot; 2023 &middot; pp. 267&ndash;276</div>
+            <div class="pub_buttons">
+                <button class="pub_btn" onclick="toggleAbstract(this)">Abstract</button>
+                <button class="pub_btn" onclick="window.open('files/papers/tpsisa2023_beyond.pdf','_blank')">PDF</button>
+            </div>
+            <div class="pub_abstract">
+                A vision paper on open challenges and emerging directions for digital
+                signatures in next-generation networked systems, including
+                post-quantum, distributed, and threshold settings.
             </div>
         </div>
 
     </div>
-</div>
 
-<!-- ⭐ PUBLICATIONS MODAL (OPTION C: WIDE) ⭐ -->
-<div id="publicationsModal" class="modal">
-    <div class="modal_content_wide">
-        <span class="modal_close">&times;</span>
 
-        <h1 style="text-align:center; margin-bottom:20px;">Publications</h1>
+    <!-- ============= PREPRINT ============= -->
+    <div class="pub_list" data-pub-list="preprint">
 
-        <!-- ---------------- ACCORDION ---------------- -->
-
-        <div class="accordion_item">
-            <div class="accordion_header" onclick="toggleAccordion(this)">Conference</div>
-            <div class="accordion_content">
-
-                <div class="pub_item">
-                    <strong>1. Your Conference Paper Title</strong><br>
-                    Authors • Conference • 2025
-
-                    <div class="pub_buttons">
-                        <button class="pub_btn">PDF</button>
-                        <button class="pub_btn">Code</button>
-                        <button class="abs_btn" onclick="toggleAbstract(this)">Show Abstract</button>
-                    </div>
-
-                    <div class="pub_abstract">
-                        This is a placeholder abstract describing your work...
-                    </div>
-                </div>
-
-                <div class="pub_item">
-                    <strong>2. Another Conference Paper</strong><br>
-                    Authors • Conference • 2024
-
-                    <div class="pub_buttons">
-                        <button class="pub_btn">PDF</button>
-                        <button class="pub_btn">Code</button>
-                        <button class="abs_btn" onclick="toggleAbstract(this)">Show Abstract</button>
-                    </div>
-
-                    <div class="pub_abstract">
-                        Abstract text goes here...
-                    </div>
-                </div>
-
+        <div class="pub_item">
+            <div class="pub_title">Lightweight Authentication for Data Provenance with DKG</div>
+            <div class="pub_authors"><span class="me">K. Sedghighadikolaei</span>, et al.</div>
+            <div class="pub_venue">To be submitted &middot; 2026</div>
+            <div class="pub_buttons">
+                <button class="pub_btn disabled" title="Available after submission">PDF</button>
             </div>
         </div>
 
-        <div class="accordion_item">
-            <div class="accordion_header" onclick="toggleAccordion(this)">Journal</div>
-            <div class="accordion_content">
-
-                <div class="pub_item">
-                    <strong>1. Journal Paper Title</strong><br>
-                    Authors • Journal • 2024
-
-                    <div class="pub_buttons">
-                        <button class="pub_btn">PDF</button>
-                        <button class="pub_btn">Code</button>
-                        <button class="abs_btn" onclick="toggleAbstract(this)">Show Abstract</button>
-                    </div>
-
-                    <div class="pub_abstract">
-                        Abstract for the journal article...
-                    </div>
-                </div>
-
+        <div class="pub_item">
+            <div class="pub_title">PQ-Secure Aggregate Signature</div>
+            <div class="pub_authors"><span class="me">K. Sedghighadikolaei</span>, et al.</div>
+            <div class="pub_venue">To be submitted &middot; 2026</div>
+            <div class="pub_buttons">
+                <button class="pub_btn disabled" title="Available after submission">PDF</button>
             </div>
         </div>
 
-        <div class="accordion_item">
-            <div class="accordion_header" onclick="toggleAccordion(this)">Patents</div>
-            <div class="accordion_content">
+        <div class="pub_item">
+            <div class="pub_title">QPADL: Post-Quantum Private Spectrum Access with Verified Location and DoS Resilience</div>
+            <div class="pub_authors">S. Darzi, S. Nouma, <span class="me">K. Sedghighadikolaei</span>, A. Yavuz</div>
+            <div class="pub_venue">arXiv:2510.03631 &middot; 2025</div>
+            <div class="pub_buttons">
+                <button class="pub_btn" onclick="window.open('https://arxiv.org/pdf/2510.03631','_blank')">PDF</button>
+                <button class="pub_btn" onclick="window.open('https://arxiv.org/abs/2510.03631','_blank')">arXiv</button>
+                <button class="pub_btn" onclick="window.open('https://github.com/kiarashsedghigh/GPU-Multiserver-PIR-PuzzleGen','_blank')">Code</button>
+            </div>
+        </div>
 
-                <div class="pub_item">
-                    <strong>1. Patent Title</strong><br>
-                    Inventors • Patent Office • Year
-
-                    <div class="pub_buttons">
-                        <button class="pub_btn">PDF</button>
-                        <button class="abs_btn" onclick="toggleAbstract(this)">Show Abstract</button>
-                    </div>
-
-                    <div class="pub_abstract">
-                        Patent description goes here...
-                    </div>
-                </div>
-
+        <div class="pub_item">
+            <div class="pub_title">Privacy-Preserving and Trustworthy Deep Learning for Medical Imaging</div>
+            <div class="pub_authors"><span class="me">K. Sedghighadikolaei</span>, A. Yavuz</div>
+            <div class="pub_venue">arXiv:2407.00538 &middot; 2024</div>
+            <div class="pub_buttons">
+                <button class="pub_btn" onclick="window.open('https://arxiv.org/pdf/2407.00538','_blank')">PDF</button>
+                <button class="pub_btn" onclick="window.open('https://arxiv.org/abs/2407.00538','_blank')">arXiv</button>
             </div>
         </div>
 
     </div>
-</div>
 
-<!-- ---------------- JAVASCRIPT ---------------- -->
-<script>
-    const eduModal = document.getElementById("educationModal");
-    const pubModal = document.getElementById("publicationsModal");
 
-    const openEduBtn = document.getElementById("openEducationModal");
-    const openPubBtn = document.getElementById("openPublicationsModal");
+    <!-- ============= PATENT ============= -->
+    <div class="pub_list" data-pub-list="patent">
 
-    const closeBtns = document.querySelectorAll(".modal_close");
+        <div class="pub_item">
+            <div class="pub_title">A Lightweight Multiple-Time Post-Quantum Signature for Heterogeneous Internet of Things</div>
+            <div class="pub_authors">A. Yavuz, <span class="me">K. Sedghighadikolaei</span></div>
+            <div class="pub_venue">USF TTO Ref. 25T013PR-CS &middot; Provisional Patent Filed (Aug 2024)</div>
+        </div>
 
-    openEduBtn.onclick = () => eduModal.style.display = "block";
-    openPubBtn.onclick = () => pubModal.style.display = "block";
+        <div class="pub_item">
+            <div class="pub_title">Efficient, Scalable and Post-Quantum Authentication for Real-time Next Generation Networks with Probabilistic Data Structures</div>
+            <div class="pub_authors">A. Yavuz, <span class="me">K. Sedghighadikolaei</span></div>
+            <div class="pub_venue">USF TTO Ref. 24T240PR-CS &middot; Provisional Patent Filed (Jun 2024)</div>
+        </div>
 
-    closeBtns.forEach(btn => {
-        btn.onclick = () => {
-            eduModal.style.display = "none";
-            pubModal.style.display = "none";
-        };
-    });
-
-    window.onclick = (e) => {
-        if (e.target === eduModal) eduModal.style.display = "none";
-        if (e.target === pubModal) pubModal.style.display = "none";
-    };
-
-    /* --------- Accordion Logic --------- */
-    function toggleAccordion(header) {
-        const content = header.nextElementSibling;
-        content.style.display = content.style.display === "block" ? "none" : "block";
-    }
-
-    function toggleAbstract(button) {
-        const abstract = button.parentElement.nextElementSibling;
-
-        if (abstract.style.display === "none" || abstract.style.display === "") {
-            abstract.style.display = "block";
-            button.innerText = "Hide Abstract";
-        } else {
-            abstract.style.display = "none";
-            button.innerText = "Show Abstract";
-        }
-    }
-</script>
-
-</body>
-</html>
+    </div>
+</section>
