@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kiarash Sedghi — Crytography Researcher </title>
-    <meta name="description" content="Ph.D. researcher at the University of South Florida working.">
+    <title>Kiarash Sedghi — Cryptography Researcher</title>
+    <meta name="description" content="Ph.D. researcher at the University of South Florida working on threshold cryptography and post-quantum signatures.">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
@@ -15,33 +15,27 @@
            TOKENS — Soft White palette
            ======================================================== */
         :root {
-            /* surfaces */
-            --bg-base:        #f8f8fa;   /* soft off-white page */
-            --surface:        #ffffff;   /* card surface */
-            --surface-2:      #fbfbfd;   /* alt surface (abstracts, hover) */
+            --bg-base:        #f8f8fa;
+            --surface:        #ffffff;
+            --surface-2:      #fbfbfd;
 
-            /* text */
-            --text:           #1d1d1f;   /* primary, near-black */
-            --text-body:      #424245;   /* body */
-            --text-muted:     #6e6e73;   /* muted */
-            --text-dim:       #86868b;   /* timestamps, captions */
+            --text:           #1d1d1f;
+            --text-body:      #424245;
+            --text-muted:     #6e6e73;
+            --text-dim:       #86868b;
 
-            /* accents */
-            --accent:         #1d1d1f;   /* near-black: active tab, CV button */
-            --accent-2:       #3b3b6e;   /* dark muted indigo: venues, "Me", interactive */
+            --accent:         #1d1d1f;
+            --accent-2:       #3b3b6e;
             --accent-soft:    rgba(59, 59, 110, 0.08);
             --accent-border:  rgba(59, 59, 110, 0.22);
 
-            /* borders */
             --border:         #e5e5e7;
             --border-hi:      #d2d2d7;
 
-            /* shadows */
             --shadow-sm:      0 1px 2px rgba(0, 0, 0, 0.04);
             --shadow-md:      0 4px 12px rgba(0, 0, 0, 0.06);
             --shadow-lg:      0 8px 24px rgba(0, 0, 0, 0.08);
 
-            /* radii — tighter than dark version */
             --radius-card:    16px;
             --radius-chip:    12px;
             --radius-pill:    999px;
@@ -61,7 +55,7 @@
         ::selection { background: rgba(59, 59, 110, 0.15); color: var(--text); }
 
         /* ========================================================
-           AMBIENT BACKGROUND — faint graph-paper lattice only
+           AMBIENT BACKGROUND — faint graph-paper lattice
            ======================================================== */
         .bg-stack {
             position: fixed;
@@ -86,15 +80,39 @@
         }
 
         /* ========================================================
-           HERO — typography-led
+           HERO — two-column grid
            ======================================================== */
         header {
             padding-bottom: 0;
             position: relative;
             z-index: 1;
-            padding-top: 40px;
         }
 
+        .hero_grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 48px 24px 16px 24px;
+            display: grid;
+            grid-template-columns: 5fr 6fr;
+            gap: 56px;
+            align-items: start;
+        }
+
+        /* Left column — about / identity */
+        .hero_left {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+        }
+        /* Override the original centered helpers when inside the left column */
+        .hero_left .flex_column_center,
+        .hero_left .flex_row_center {
+            align-items: flex-start;
+            justify-content: flex-start;
+        }
+
+        .hero_left .header_img { padding-top: 0; }
         .header_img img {
             border: 3px solid var(--surface) !important;
             box-shadow:
@@ -102,35 +120,43 @@
                 0 6px 20px rgba(0, 0, 0, 0.08);
         }
 
-        /* Override style.css hero text colors and sizing */
+        .hero_left .header_text { margin-top: 14px; }
         .header_text h1 {
             color: var(--text);
-            font-size: 3em;
+            font-size: 2.8em;
             font-weight: 700;
             letter-spacing: -0.03em;
-            line-height: 1.1;
-            margin-top: 8px;
+            line-height: 1.05;
+            text-align: left;
+            width: auto;
         }
         .header_text h2 {
             color: var(--text-muted);
             font-weight: 400;
             font-size: 1.05rem;
             letter-spacing: 0;
-            margin-top: 6px;
+            margin-top: 8px;
+            text-align: left;
+            width: auto;
         }
 
+        .hero_left .header_svg_list {
+            padding-top: 16px;
+            margin-left: 0;
+        }
         .header_svg_item svg { fill: var(--text-muted); transition: 0.2s; }
         .header_svg_item:hover svg { fill: var(--text); }
 
-        .profile_description_box {
-            max-width: 680px;
-            margin: 26px auto 0 auto;
-            padding: 22px 28px;
+        .hero_left .profile_description_box {
+            max-width: none;
+            width: 100%;
+            margin: 22px 0 0 0;
+            padding: 20px 24px;
             background: var(--surface);
             border: 1px solid var(--border);
             border-radius: var(--radius-card);
             box-shadow: var(--shadow-sm);
-            text-align: center;
+            text-align: left;
         }
         .profile_description_box p {
             margin: 0;
@@ -140,11 +166,10 @@
         }
         .profile_description_box strong { color: var(--text); font-weight: 600; }
 
-        .hero_actions {
+        .hero_left .hero_actions {
             display: flex;
-            justify-content: center;
+            justify-content: flex-start;
             margin-top: 18px;
-            margin-bottom: 6px;
         }
         .cv_btn {
             display: inline-flex;
@@ -170,8 +195,41 @@
         }
         .cv_btn svg { width: 16px; height: 16px; fill: currentColor; }
 
+        /* Right column — Background section is rendered here */
+        .hero_right { min-width: 0; }
+        .hero_right .section {
+            max-width: none;
+            margin: 0;
+            padding: 0;
+        }
+        .hero_right .section_eyebrow {
+            margin-bottom: 18px;
+        }
+        .hero_right .timeline {
+            padding-left: 24px;
+        }
+        .hero_right .edu_item {
+            padding: 16px 20px;
+            margin-bottom: 14px;
+        }
+        .hero_right .edu_item::before {
+            left: -22px;
+            top: 22px;
+        }
+
+        /* Stack to a single column on smaller screens */
+        @media (max-width: 900px) {
+            .hero_grid {
+                grid-template-columns: 1fr;
+                gap: 36px;
+                padding-top: 36px;
+            }
+            .hero_left { align-items: stretch; }
+            .header_text h1 { font-size: 2.4em; }
+        }
+
         /* ========================================================
-           STICKY NAV — frosted on light
+           STICKY NAV
            ======================================================== */
         .nav_bar {
             position: sticky;
@@ -385,10 +443,7 @@
             font-family: inherit;
             box-shadow: var(--shadow-sm);
         }
-        .pub_tab:hover {
-            color: var(--text);
-            border-color: var(--border-hi);
-        }
+        .pub_tab:hover { color: var(--text); border-color: var(--border-hi); }
         .pub_tab.active {
             background: var(--accent);
             border-color: var(--accent);
@@ -645,7 +700,6 @@
             .section { padding: 40px 18px 8px 18px; }
             .nav_bar_inner { gap: 2px; padding: 8px 6px; }
             .nav_link { font-size: 0.8rem; padding: 5px 10px; }
-            .header_text h1 { font-size: 2.2em; }
             .edu_top { flex-direction: column; align-items: flex-start; }
             .pub_title { font-size: 0.95rem; }
             .timeline { padding-left: 22px; }
@@ -671,72 +725,84 @@
 </div>
 
 
-<!-- ====================== HERO ====================== -->
+<!-- ====================== HERO (two columns) ====================== -->
 <header>
+    <div class="hero_grid">
 
-    <div class="header_img flex_column_center">
-        <img src="img/profile.jpg" alt="Kiarash Sedghi"/>
-    </div>
+        <!-- LEFT: profile, name, description, CV -->
+        <div class="hero_left">
 
-    <div class="header_text flex_column_center">
-        <h1 class="header_h_item">Kiarash Sedghi</h1>
-        <h2 class="header_h_item">Crytography Researcher</h2>
-    </div>
+            <div class="header_img flex_column_center">
+                <img src="img/profile.jpg" alt="Kiarash Sedghi"/>
+            </div>
 
-    <div class="header_svg_list flex_row_center">
-        <div class="header_svg_item">
-            <a href="https://scholar.google.com/citations?user=B7wAKkEAAAAJ&hl=en" target="_blank" rel="nofollow" title="Google Scholar">
-                <svg viewBox="0 0 24 24" width="26" height="26">
-                    <path d="M12 2L1 9l11 7 9-5.727V17h2V9L12 2zm0 9.04L5.15 9 12 4.96 18.85 9 12 11.04zM4 13v4c0 3.314 3.582 6 8 6s8-2.686 8-6v-4l-8 4.727L4 13z"/>
-                </svg>
-            </a>
+            <div class="header_text flex_column_center">
+                <h1 class="header_h_item">Kiarash Sedghi</h1>
+                <h2 class="header_h_item">Cryptography Researcher</h2>
+            </div>
+
+            <div class="header_svg_list flex_row_center">
+                <div class="header_svg_item">
+                    <a href="https://scholar.google.com/citations?user=B7wAKkEAAAAJ&hl=en" target="_blank" rel="nofollow" title="Google Scholar">
+                        <svg viewBox="0 0 24 24" width="26" height="26">
+                            <path d="M12 2L1 9l11 7 9-5.727V17h2V9L12 2zm0 9.04L5.15 9 12 4.96 18.85 9 12 11.04zM4 13v4c0 3.314 3.582 6 8 6s8-2.686 8-6v-4l-8 4.727L4 13z"/>
+                        </svg>
+                    </a>
+                </div>
+                <div class="header_svg_item">
+                    <a href="https://github.com/kiarashsedghigh" target="_blank" rel="nofollow" title="GitHub">
+                        <svg viewBox="0 0 24 24" width="26" height="26">
+                            <path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.92.58.11.79-.25.79-.55v-2.1c-3.2.7-3.87-1.55-3.87-1.55-.53-1.34-1.3-1.7-1.3-1.7-1.06-.73.08-.72.08-.72 1.17.08 1.78 1.2 1.78 1.2 1.04 1.78 2.73 1.27 3.4.97.1-.76.41-1.27.74-1.56-2.55-.29-5.23-1.27-5.23-5.65 0-1.25.45-2.27 1.2-3.07-.12-.3-.52-1.52.1-3.17 0 0 .97-.31 3.18 1.17A11.07 11.07 0 0 1 12 6.37c.98.01 1.97.13 2.9.38 2.2-1.48 3.17-1.17 3.17-1.17.63 1.65.23 2.87.11 3.17.75.8 1.19 1.82 1.19 3.07 0 4.4-2.69 5.36-5.25 5.65.42.36.8 1.07.8 2.17v3.22c0 .31.2.67.8.55A10.99 10.99 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5Z"/>
+                        </svg>
+                    </a>
+                </div>
+                <div class="header_svg_item">
+                    <a href="https://linkedin.com/in/kiarash-sedghi" target="_blank" rel="nofollow" title="LinkedIn">
+                        <svg viewBox="0 0 24 24" width="26" height="26">
+                            <path d="M4.98 3.5a2.5 2.5 0 11-.01 5.01 2.5 2.5 0 01.01-5.01zM3 9h4v12H3V9zm7 0h3.8v1.71h.05c.53-1 1.82-2.05 3.75-2.05C21.4 8.66 22 11 22 14.27V21h-4v-6.12c0-1.46-.03-3.34-2.03-3.34-2.03 0-2.34 1.58-2.34 3.23V21h-4V9z"/>
+                        </svg>
+                    </a>
+                </div>
+                <div class="header_svg_item">
+                    <a href="mailto:kiarashs@usf.edu" title="Email">
+                        <svg viewBox="0 0 24 24" width="24" height="24">
+                            <path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6zm-2 0l-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="profile_description_box">
+                <p>
+                    I am a Ph.D. researcher at the <strong>University of South Florida</strong>.
+                    My current work centers on threshold cryptography &mdash; signatures and KEMs &mdash;
+                    and aggregate signatures. In parallel, I follow privacy-related projects.
+                </p>
+            </div>
+
+<!--            <div class="hero_actions">-->
+<!--                <a class="cv_btn" href="files/CV.pdf" target="_blank" download>-->
+<!--                    <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>-->
+<!--                    Download CV-->
+<!--                </a>-->
+<!--            </div>-->
+
         </div>
-        <div class="header_svg_item">
-            <a href="https://github.com/kiarashsedghigh" target="_blank" rel="nofollow" title="GitHub">
-                <svg viewBox="0 0 24 24" width="26" height="26">
-                    <path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.92.58.11.79-.25.79-.55v-2.1c-3.2.7-3.87-1.55-3.87-1.55-.53-1.34-1.3-1.7-1.3-1.7-1.06-.73.08-.72.08-.72 1.17.08 1.78 1.2 1.78 1.2 1.04 1.78 2.73 1.27 3.4.97.1-.76.41-1.27.74-1.56-2.55-.29-5.23-1.27-5.23-5.65 0-1.25.45-2.27 1.2-3.07-.12-.3-.52-1.52.1-3.17 0 0 .97-.31 3.18 1.17A11.07 11.07 0 0 1 12 6.37c.98.01 1.97.13 2.9.38 2.2-1.48 3.17-1.17 3.17-1.17.63 1.65.23 2.87.11 3.17.75.8 1.19 1.82 1.19 3.07 0 4.4-2.69 5.36-5.25 5.65.42.36.8 1.07.8 2.17v3.22c0 .31.2.67.8.55A10.99 10.99 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5Z"/>
-                </svg>
-            </a>
-        </div>
-        <div class="header_svg_item">
-            <a href="https://linkedin.com/in/kiarash-sedghi" target="_blank" rel="nofollow" title="LinkedIn">
-                <svg viewBox="0 0 24 24" width="26" height="26">
-                    <path d="M4.98 3.5a2.5 2.5 0 11-.01 5.01 2.5 2.5 0 01.01-5.01zM3 9h4v12H3V9zm7 0h3.8v1.71h.05c.53-1 1.82-2.05 3.75-2.05C21.4 8.66 22 11 22 14.27V21h-4v-6.12c0-1.46-.03-3.34-2.03-3.34-2.03 0-2.34 1.58-2.34 3.23V21h-4V9z"/>
-                </svg>
-            </a>
-        </div>
-        <div class="header_svg_item">
-            <a href="mailto:kiarashs@usf.edu" title="Email">
-                <svg viewBox="0 0 24 24" width="24" height="24">
-                    <path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6zm-2 0l-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z"/>
-                </svg>
-            </a>
-        </div>
-    </div>
 
-    <div class="profile_description_box">
-        <p>
-            I am a Ph.D. researcher at the <strong>University of South Florida</strong>.
-            My current work centers on threshold cryptography &mdash; signatures and KEMs &mdash;
-            and aggregate signatures. In parallel, I follow privacy-related projects.
-        </p>
-    </div>
+        <!-- RIGHT: Background section -->
+        <div class="hero_right">
+            <div data-include="data/background.html"></div>
+        </div>
 
-    <div class="hero_actions">
-        <a class="cv_btn" href="files/CV.pdf" target="_blank" download>
-            <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-            Download CV
-        </a>
     </div>
-
 </header>
 
 
 <!-- ====================== STICKY NAV ====================== -->
 <nav class="nav_bar">
     <div class="nav_bar_inner">
-        <a class="nav_link" data-section="news">News</a>
         <a class="nav_link" data-section="background">Background</a>
+        <a class="nav_link" data-section="news">News</a>
         <a class="nav_link" data-section="publications">Publications</a>
         <a class="nav_link" data-section="projects">Projects</a>
         <a class="nav_link" data-section="service">Service</a>
@@ -744,9 +810,8 @@
 </nav>
 
 
-<!-- ====================== INCLUDES ====================== -->
+<!-- ====================== REST OF SECTIONS ====================== -->
 <div data-include="data/news.html"></div>
-<div data-include="data/background.html"></div>
 <div data-include="data/publications.html"></div>
 <div data-include="data/projects.html"></div>
 <div data-include="data/service.html"></div>
@@ -780,7 +845,6 @@
         }));
     }
 
-    /* -------- Init after fragments are in the DOM -------- */
     function initPage() {
         const pubTabs  = document.querySelectorAll('.pub_tab');
         const pubLists = document.querySelectorAll('.pub_list');
@@ -816,7 +880,6 @@
         onScrollSpy();
     }
 
-    /* -------- Abstract toggle (global) -------- */
     function toggleAbstract(button) {
         const item = button.closest('.pub_item');
         const abs  = item.querySelector('.pub_abstract');
