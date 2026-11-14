@@ -1,6 +1,6 @@
 const dialog = document.querySelector('#answer-dialog');
 const content = document.querySelector('#answer-content');
-const greeting = document.querySelector('#greeting');
+
 const topics = {
   education: {file:'background', intro:'Here’s the path that brought me to cryptography.'},
   publications: {file:'publications', intro:'I explore how to keep trust secure — even in a post-quantum world. Here’s my research.'},
@@ -61,21 +61,38 @@ document.addEventListener('click',event=>{
   const tab=event.target.closest('.pub_tab');if(tab){content.querySelectorAll('.pub_tab').forEach(t=>t.classList.toggle('active',t===tab));content.querySelectorAll('.pub_list').forEach(l=>l.classList.toggle('active',l.dataset.pubList===tab.dataset.pub));}
 });
 window.toggleAbstract=button=>{const abstract=button.closest('.pub_item').querySelector('.pub_abstract');if(!abstract)return;const open=abstract.style.display==='block';abstract.style.display=open?'none':'block';button.textContent=open?'Abstract':'Hide Abstract';button.setAttribute('aria-expanded',String(!open));};
-function classify(question) {
-  if(/\b(education|study|studied|school|degree|university|gpa|background|college|phd|ph\.d)\b/i.test(question))return 'education';
-  if(/\b(paper|papers|publication|publications|research|signature|signatures|cryptography|pqc|quantum)\b/i.test(question))return 'publications';
-  if(/\b(project|projects|build|building|code|github|software)\b/i.test(question))return 'projects';
-  if(/\b(news|latest|recent|updates)\b/i.test(question))return 'news';
-  if(/\b(teaching|service|review|reviewer|awards|experience|work)\b/i.test(question))return 'service';
-  if(/\b(contact|email|connect|collaborate)\b/i.test(question))return 'contact';
-  if(/\b(hi|hello|about|yourself|who)\b/i.test(question))return 'about';
-  return null;
-}
-document.querySelector('#ask-form').addEventListener('submit',e=>{e.preventDefault();const input=document.querySelector('#question');const question=input.value.trim();if(!question)return;respond(classify(question),question);input.value='';});
 function closeAnswer(){++requestId;dialog.close();if('speechSynthesis' in window)speechSynthesis.cancel();}
 document.querySelector('#close-answer').addEventListener('click',closeAnswer);
 dialog.addEventListener('click',event=>{if(event.target===dialog){const r=dialog.getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)closeAnswer();}});
 dialog.addEventListener('cancel',()=>{++requestId;if('speechSynthesis' in window)speechSynthesis.cancel();});
-const sound=document.querySelector('#sound');
-if(!('speechSynthesis' in window)){sound.hidden=true;}else{sound.addEventListener('click',()=>{voiceEnabled=!voiceEnabled;sound.setAttribute('aria-pressed',String(voiceEnabled));sound.textContent=voiceEnabled?'Voice on ◉':'Voice off ◌';if(voiceEnabled)speak('Hi, I am Kiarash Sedghi. What would you like to know about me?');else speechSynthesis.cancel();});}
-if(!matchMedia('(prefers-reduced-motion: reduce)').matches){const text=greeting.textContent;greeting.textContent='';let i=0;const timer=setInterval(()=>{greeting.textContent=text.slice(0,++i);if(i>=text.length)clearInterval(timer);},28);}
+
+const stage=document.querySelector('.stage');
+const head=document.querySelector('#avatar-head');
+const motion=matchMedia('(prefers-reduced-motion: reduce)');
+let greetingTimer, readyTimer;
+function startIntroduction(){
+  clearTimeout(greetingTimer);clearTimeout(readyTimer);
+  stage.classList.remove('scene-ready','scene-greeting');
+  const approach=document.querySelector('.character-approach');
+  approach.style.animation='none';void approach.offsetWidth;approach.style.animation='';
+  if(motion.matches){stage.classList.add('scene-ready');return;}
+  greetingTimer=setTimeout(()=>{stage.classList.add('scene-greeting');speak('Hi, I am Kiarash Sedghi.');},4600);
+  readyTimer=setTimeout(()=>{stage.classList.add('scene-ready');},7300);
+}
+document.querySelector('#replay').addEventListener('click',startIntroduction);
+const voice=document.querySelector('#voice');
+if(!('speechSynthesis' in window)){voice.hidden=true;}else voice.addEventListener('click',()=>{voiceEnabled=true;speak('Hi, I am Kiarash Sedghi.');});
+let frame=0;
+window.addEventListener('pointermove',event=>{
+  if(motion.matches||event.pointerType==='touch')return;
+  cancelAnimationFrame(frame);
+  frame=requestAnimationFrame(()=>{
+    const bounds=head.getBoundingClientRect();
+    const x=Math.max(-1,Math.min(1,(event.clientX-(bounds.left+bounds.width/2))/(innerWidth*.45)));
+    const y=Math.max(-1,Math.min(1,(event.clientY-(bounds.top+bounds.height/2))/(innerHeight*.45)));
+    head.style.setProperty('--head-y',x*19+'deg');head.style.setProperty('--head-x',-y*10+'deg');head.style.setProperty('--head-z',x*4+'deg');
+  });
+},{passive:true});
+document.documentElement.addEventListener('pointerleave',()=>{cancelAnimationFrame(frame);head.style.setProperty('--head-y','0deg');head.style.setProperty('--head-x','0deg');head.style.setProperty('--head-z','0deg');});
+motion.addEventListener('change',()=>{head.removeAttribute('style');startIntroduction();});
+startIntroduction();
